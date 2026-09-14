@@ -14,9 +14,9 @@
     "Tech Debt - QA": "#b0568f"
   },
   "lanes": {
-    "now": "In build or grooming",
-    "next": "Scoped and queued",
-    "later": "Direction set, not scoped"
+    "now": "Prioritize for Next PI",
+    "next": "",
+    "later": ""
   },
   "pillars": {
     "Land": {
