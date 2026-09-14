@@ -1,59 +1,162 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "headers": [
+ "$schema": "https://openapi.vercel.sh/vercel.json",
+ "cleanUrls": true,
+ "headers": [
+  {
+   "source": "/content.json",
+   "headers": [
     {
-      "source": "/content.json",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/editor.html",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "no-cache"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store"
-        },
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
-      ]
+     "key": "Cache-Control",
+     "value": "no-cache, must-revalidate"
     }
-  ],
-  "functions": {
-    "api/sync.js": {
-      "maxDuration": 60
+   ]
+  },
+  {
+   "source": "/roadmap.html",
+   "headers": [
+    {
+     "key": "Cache-Control",
+     "value": "no-cache, must-revalidate"
     }
+   ]
+  },
+  {
+   "source": "/editor.html",
+   "headers": [
+    {
+     "key": "X-Robots-Tag",
+     "value": "noindex, nofollow"
+    },
+    {
+     "key": "Cache-Control",
+     "value": "no-cache"
+    }
+   ]
+  },
+  {
+   "source": "/api/(.*)",
+   "headers": [
+    {
+     "key": "Cache-Control",
+     "value": "no-store"
+    },
+    {
+     "key": "X-Robots-Tag",
+     "value": "noindex, nofollow"
+    }
+   ]
+  },
+  {
+   "source": "/(.*)",
+   "headers": [
+    {
+     "key": "X-Content-Type-Options",
+     "value": "nosniff"
+    },
+    {
+     "key": "Referrer-Policy",
+     "value": "strict-origin-when-cross-origin"
+    }
+   ]
   }
+ ],
+ "functions": {
+  "api/sync.js": {
+   "maxDuration": 60
+  },
+  "api/roadmap.js": {
+   "maxDuration": 15,
+   "includeFiles": "content.json"
+  }
+ },
+ "redirects": [
+  {
+   "source": "/content.json",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/api/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/index.html",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/index",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/editor.html",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/editor",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/edit.js",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  },
+  {
+   "source": "/api/sync",
+   "has": [
+    {
+     "type": "host",
+     "value": "peopleshr-roadmap.vercel.app"
+    }
+   ],
+   "destination": "/roadmap",
+   "permanent": false
+  }
+ ]
 }
