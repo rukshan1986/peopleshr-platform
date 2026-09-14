@@ -79,7 +79,7 @@
   },
   "items": [
     {
-      "id": "helpdesk",
+      "id": "2854697896",
       "t": "Employee Help Desk",
       "d": "One place to raise an HR request, with routing, SLAs and a visible trail.",
       "s": "now",
@@ -93,7 +93,7 @@
       }
     },
     {
-      "id": "workflow-msg",
+      "id": "2854730893",
       "t": "Workflow Actions via Messaging",
       "d": "Approve and act on workflow tasks from WhatsApp, without entering PHR.",
       "s": "now",
@@ -107,12 +107,12 @@
       }
     },
     {
-      "id": "ai-insights-msg",
+      "id": "2854734442",
       "t": "AI Insights via Messaging",
       "d": "Ask workforce questions from Teams, WhatsApp or Google Chat.",
       "s": "now",
       "p": "Insights",
-      "pl": "Moonshots",
+      "pl": "Expand",
       "detail": {
         "thesis": "<p>PHR AI Insights provides conversational workforce analytics, allowing authorized users to ask natural-language questions and receive answers based on the organization's available HR data.</p><p>However, the availability of workforce intelligence does not necessarily mean that the people making business decisions are consuming it at the moment those decisions are being made.</p><p>Senior leaders such as CEOs, CHROs, CFOs and other management users may require workforce information regularly, but HRIS applications are not always part of their everyday working environment.</p><p>This creates a broader business problem:</p><p><strong>Workforce intelligence can remain separated from the management conversations and decisions where that intelligence is most valuable.</strong></p><p>When a management user needs workforce information, they may have to leave their current working environment, access PHR, navigate to the relevant analytics capability and perform the investigation.</p><p>Alternatively, they may depend on HR or another user to retrieve the information for them.</p><p>This can result in:</p><ul><li>slower access to workforce information during management decision making;</li><li>management decisions being discussed without immediately available HR context;</li><li>dependency on HR teams to answer analytical questions that the system could potentially answer directly;</li><li>lower adoption of analytical capabilities among senior users who do not regularly operate within the HRIS;</li><li>additional effort to move information between PHR and the communication channels where management discussions are taking place; and</li><li>reduced practical value from the organization's investment in workforce analytics.</li></ul><p>At the same time, management users already spend significant portions of their working day within communication and collaboration platforms such as Microsoft Teams, WhatsApp and Google Chat.</p>",
         "captured": "2026-09-08",
@@ -121,12 +121,12 @@
       }
     },
     {
-      "id": "agentic-twin",
+      "id": "2854664562",
       "t": "PHR Agentic Twin",
       "d": "One conversational interface across the whole platform, not another module.",
       "s": "now",
       "p": "Utilities",
-      "pl": "Moonshots",
+      "pl": "Expand",
       "detail": {
         "thesis": "<p>As PHR continues to expand, clients are gaining access to more HR capabilities, workflows and configuration options. However, the value of these capabilities depends on users knowing that they exist, knowing where to find them, and understanding how to use the relevant process.</p><p>This creates a growing business problem:</p><p><strong>The capability of the product can increase faster than the ability of users to consume it.</strong></p><p>Employees, managers and HR teams may need to navigate multiple modules and screens, understand different workflows, or depend on training, documentation and experienced users even when their actual business intent is simple, such as applying leave, checking attendance, completing an approval, finding employee information or performing a supervisor activity.</p><p>As the platform grows, this can lead to:</p><ul><li>lower adoption and utilization of capabilities clients already own;</li><li>increased training, onboarding and support dependency;</li><li>longer time to complete common HR activities;</li><li>difficulty discovering functionality already available within PHR;</li><li>reduced perceived value from the client's HR technology investment; and</li><li>increasing user experience complexity whenever additional capabilities are introduced.</li></ul><p>The opportunity is therefore not simply to provide another AI feature.</p><p>It is to create a scalable way for users to access the value already available across PHR without requiring them to understand the structure of the system itself.</p>",
         "captured": "2026-09-08",
@@ -135,12 +135,12 @@
       }
     },
     {
-      "id": "async-reports",
+      "id": "2854866908",
       "t": "Asynchronous Report Generation",
       "d": "Heavy reports process in the background while light ones stay instant.",
       "s": "now",
       "p": "Insights",
-      "pl": "Upkeep",
+      "pl": "Delight",
       "detail": {
         "thesis": "<p>Reporting is a core part of day-to-day HR and management activities, and users depend on PHR to provide the information they need within a reasonable and predictable timeframe.</p><p>As client data volumes, reporting periods and report complexity increase, some reports take significantly longer to generate than others.</p><p>This creates a business problem because users cannot always predict how long they will need to wait before the information they requested becomes available.</p><p>Long-running report generation can result in:</p><ul><li>users losing productive time while waiting for reports;</li><li>uncertainty about whether a report is still processing or has failed;</li><li>repeated report requests when users are unsure of the processing status;</li><li>reduced confidence in the reporting experience;</li><li>difficulty supporting increasingly large client data volumes consistently; and</li><li>resource-intensive reporting activity potentially affecting the performance and reliability of other PHR operations.</li></ul><p>As PHR continues to support larger clients and greater volumes of historical data, this problem is expected to become more significant.</p><p><strong>The business need is therefore to ensure that PHR can provide a reliable and scalable reporting experience even when report-processing requirements vary significantly.</strong></p>",
         "captured": "2026-09-08",
@@ -149,12 +149,12 @@
       }
     },
     {
-      "id": "lexi-msg",
+      "id": "2854744086",
       "t": "Lexi Chatbot via Messaging",
       "d": "Employee self service through the chat apps people already use.",
-      "s": "later",
+      "s": "next",
       "p": "Engagement",
-      "pl": "Land",
+      "pl": "Delight",
       "detail": {
         "thesis": "<p>Employees regularly need HR information and services as part of their day-to-day work.</p><p>These needs are often relatively simple, such as:</p><ul><li>checking a leave balance;</li><li>understanding an HR policy;</li><li>finding attendance information;</li><li>checking employee-related information available to them; or</li><li>completing a common self-service transaction.</li></ul><p>However, accessing these services can still require employees to enter the HR system, identify where the relevant capability exists and follow the appropriate process.</p><p>For employees who use HR systems only occasionally, this can create unnecessary effort even for simple HR needs.</p><p>This creates several business problems:</p><ul><li>employees may depend on HR teams for information that is already available through self-service;</li><li>HR teams may repeatedly answer common employee questions;</li><li>employees may avoid or delay using available self-service capabilities because accessing them feels inconvenient;</li><li>adoption of digital HR services may remain lower than expected;</li><li>employees may need to learn different modules, screens and processes for different HR activities;</li><li>simple HR interactions can take more employee time than necessary; and</li><li>organizations may not receive the full value from PHR capabilities they have already implemented.</li></ul>",
         "captured": "2026-09-08",
@@ -372,6 +372,6 @@
   "source": {
     "board": "2H 2026",
     "url": "https://peopleshr-squad.monday.com/boards/5029507352",
-    "note": "Lanes follow the board's own Now, Next and Later groups. Thesis is the Problem / Opportunity section of each item's Thesis document."
+    "note": "Item ids, lanes and pillars come from the 2H 2026 board: the Item ID column, the Now / Next / Later groups, and the S Pillar column. Thesis is the Problem / Opportunity section of each item's Thesis document."
   }
 }
