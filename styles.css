@@ -371,6 +371,7 @@ button.slice:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   border:1px solid color-mix(in srgb,var(--lc) 24%,transparent)}
 .lanehead .mark{width:9px;height:9px;border-radius:50%;background:var(--lc);flex:0 0 auto;
   box-shadow:0 0 0 4px color-mix(in srgb,var(--lc) 18%,transparent)}
+.lanehead{min-height:58px}   /* all three headers match, with or without a subtitle */
 .lanehead .txt{min-width:0}
 .lanehead h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.11em;line-height:1.2;
   text-transform:uppercase;color:var(--lc)}
