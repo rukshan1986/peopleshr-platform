@@ -371,7 +371,7 @@
        pasted in or produced by execCommand is safe to render. */
     function rich(html){
       var INLINE = {STRONG:"strong", B:"strong", EM:"em", I:"em"};
-      var LIST   = {UL:"ul", OL:"ol", LI:"li"};
+      var LIST   = {UL:"ul", OL:"ol", LI:"li", P:"p"};
       var box = document.createElement("div");
       box.innerHTML = String(html == null ? "" : html);
       function walk(node){
@@ -903,8 +903,11 @@
           '<div><label class="edlab">Pillar</label><select id="f-pl">'+
             opts(Object.keys(R.pillars), i.pl)+'</select></div>'+
         '</div>'+
-        '<label class="edlab">Thesis</label>'+
-        '<textarea id="f-th" rows="8">'+esc(d.thesis||"")+'</textarea>'+
+        '<label class="edlab">Captured on the board</label>'+
+        '<input id="f-c" type="date" value="'+esc(d.captured||"")+'">'+
+        '<label class="edlab">Thesis, the Problem and Opportunity section</label>'+
+        '<textarea id="f-th" rows="10">'+esc(d.thesis||"")+'</textarea>'+
+        '<p class="edhint">Paragraphs and bullets are kept. Everything else is stripped.</p>'+
         '<label class="edlab">monday.com item URL</label>'+
         '<input id="f-m" type="url" value="'+esc(d.monday||"")+'" placeholder="https://peopleshr.monday.com/boards/.../pulses/...">'+
         '<label class="edlab">Azure DevOps work item URL</label>'+
@@ -923,7 +926,8 @@
         i.p  = $("f-p").value;
         i.pl = $("f-pl").value;
         i.detail = i.detail || {};
-        i.detail.thesis = $("f-th").value.trim();
+        i.detail.thesis   = $("f-th").value.trim();
+        i.detail.captured = $("f-c").value;
         i.detail.monday = $("f-m").value.trim();
         i.detail.ado    = $("f-a").value.trim();
         delete i.isNew;
@@ -949,7 +953,7 @@
         id: "cap-" + Date.now().toString(36),
         t: "New capability", d: "",
         s: lane, p: Object.keys(R.packages)[0], pl: "Land",
-        detail: {thesis:"", monday:"", ado:""},
+        detail: {thesis:"", captured:"", monday:"", ado:""},
         isNew: true
       };
       R.items.push(it); byId[it.id] = it;
@@ -1010,6 +1014,12 @@
       $("dttl").textContent = i.t;
       drawer.dataset.id = i.id;
       var d = i.detail || {}, h = "";
+      var cap = $("dcap");
+      if(d.captured){
+        cap.hidden = false;
+        cap.textContent = "Captured " + new Date(d.captured+"T00:00:00")
+          .toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
+      } else { cap.hidden = true; cap.textContent = ""; }
       $("dedit").hidden = !CAN_EDIT || ITEMEDIT;
 
       if(ITEMEDIT){
@@ -1024,7 +1034,7 @@
         '<div class="pnm">'+esc(i.pl)+'</div>'+
         '<div class="pillnote">'+esc(P.q)+'</div></div></div>');
 
-      if(d.thesis) h += f("Thesis","<p>"+esc(d.thesis)+"</p>");
+      if(d.thesis) h += f("Thesis", rich(d.thesis));
 
       h += f("Links",
         '<div class="links">'+
