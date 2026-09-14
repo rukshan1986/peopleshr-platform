@@ -291,6 +291,14 @@
         if(!isNew) diffs.push(label);
         obj[key] = val;
       }
+      /* For a field the board owns outright, an empty cell means remove it,
+         not leave it alone. Only used where the column is known to exist. */
+      function own(obj, key, val, label){
+        var next = val == null ? "" : val;
+        if(obj[key] === next) return;
+        if(!isNew) diffs.push(label + (next ? "" : " removed"));
+        obj[key] = next;
+      }
 
       if(laneKeys.indexOf(m.lane) < 0) notes.push('"' + cur.t + '" is in a group this site has no lane for.');
       else set(cur, "s", m.lane, "lane");
@@ -305,7 +313,8 @@
       }
       set(cur.detail, "captured", m.captured, "captured date");
       set(cur.detail, "monday", m.monday, "monday link");
-      set(cur.detail, "ado", m.ado, "Azure DevOps link");
+      if(payload.columns && payload.columns.ado) own(cur.detail, "ado", m.ado, "Azure DevOps link");
+      else set(cur.detail, "ado", m.ado, "Azure DevOps link");
       set(cur.detail, "thesis", m.thesis, "thesis");
 
       if(isNew) added.push(cur.t);
