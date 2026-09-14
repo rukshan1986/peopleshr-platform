@@ -71,7 +71,7 @@
  },
  "redirects": [
   {
-   "source": "/content.json",
+   "source": "/content.json(.*)",
    "has": [
     {
      "type": "host",
@@ -93,7 +93,7 @@
    "permanent": false
   },
   {
-   "source": "/index.html",
+   "source": "/index(.*)",
    "has": [
     {
      "type": "host",
@@ -104,7 +104,7 @@
    "permanent": false
   },
   {
-   "source": "/index",
+   "source": "/editor(.*)",
    "has": [
     {
      "type": "host",
@@ -115,7 +115,7 @@
    "permanent": false
   },
   {
-   "source": "/editor.html",
+   "source": "/edit.js(.*)",
    "has": [
     {
      "type": "host",
@@ -126,29 +126,7 @@
    "permanent": false
   },
   {
-   "source": "/editor",
-   "has": [
-    {
-     "type": "host",
-     "value": "peopleshr-roadmap.vercel.app"
-    }
-   ],
-   "destination": "/roadmap",
-   "permanent": false
-  },
-  {
-   "source": "/edit.js",
-   "has": [
-    {
-     "type": "host",
-     "value": "peopleshr-roadmap.vercel.app"
-    }
-   ],
-   "destination": "/roadmap",
-   "permanent": false
-  },
-  {
-   "source": "/api/sync",
+   "source": "/api/sync(.*)",
    "has": [
     {
      "type": "host",
@@ -158,5 +136,6 @@
    "destination": "/roadmap",
    "permanent": false
   }
- ]
+ ],
+ "trailingSlash": false
 }
