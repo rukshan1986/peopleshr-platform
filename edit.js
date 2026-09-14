@@ -305,6 +305,7 @@
       }
       set(cur.detail, "captured", m.captured, "captured date");
       set(cur.detail, "monday", m.monday, "monday link");
+      set(cur.detail, "ado", m.ado, "Azure DevOps link");
       set(cur.detail, "thesis", m.thesis, "thesis");
 
       if(isNew) added.push(cur.t);
