@@ -116,7 +116,7 @@ h1{font-size:22px;font-weight:650;letter-spacing:-.02em;margin:0}
 .view[hidden]{display:none}
 
 /* ── strategy view ──────────────────────────────────────── */
-.doc{max-width:1020px}
+.doc{max-width:1020px;margin-inline:auto}   /* centred in the wrapper on wide screens */
 .eyebrow{font-size:10.5px;font-weight:650;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3)}
 .shero{padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:34px}
 .shero h2{margin:11px 0 12px;font-size:30px;font-weight:650;letter-spacing:-.022em;line-height:1.15}
