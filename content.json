@@ -14,7 +14,7 @@
     "Tech Debt - QA": "#b0568f"
   },
   "lanes": {
-    "now": "Prioritized for next PI",
+    "now": "Prioritize for Next PI",
     "next": "",
     "later": ""
   },
@@ -233,13 +233,16 @@
           "byMarket": {
             "sl": [],
             "ph": [
+              "<strong>Time to Yes </strong>",
               "Need to improve Payroll and Attendance compliance and localization.",
               "Need to align the Attendance module to enable multi shift capability to cater to market demands in new industries (Education, Hospitality, Construction etc).",
               "ELC is outdated, the platform needs a richer capability that meets current business needs.",
               "Payroll does not support compensation planning.",
               "Performance does not support the DOLE disciplinary flow.",
               "Platform needs to upgrade the request tracker to be a true help desk.",
-              "Health and Well-being module is a growing need in PH."
+              "Health and Well-being module is a growing need in PH.",
+              "Improve Time to Implement",
+              "Improve Time to Implement"
             ],
             "id": [
               "<strong>Improve Time to Yes</strong><ul><li>Support for mobile based workflow authorizations is lacking.</li><li>Notifications and approvals via external messaging platforms are lacking.</li></ul>",
@@ -300,7 +303,9 @@
         },
         "content": {
           "general": [
-            "<strong>Customer experience.</strong> Triaged modules, workflows and screens where a human remains in the loop after agentic workflows land."
+            "Customer experience",
+            "The guidance for a new operational user to understand and execute a complex workflow is not sufficient.",
+            "The time it takes to do certain workflows is extensive in certain cases."
           ],
           "byMarket": {
             "sl": [],
@@ -330,7 +335,7 @@
           "general": [
             "<strong>External systems</strong><ul><li>Integrations are built per customer, not offered by the platform. Each one is paid for once rather than holding the account, and a competitor rebuilds the set in a single implementation.</li></ul>",
             "<strong>Statutory depth in Payroll and Attendance</strong><ul><li>Statutory rules live in per-customer configuration, not in the platform. Every change is rebuilt account by account, so no customer is safer for being on PeoplesHR.</li></ul>",
-            "<strong>Platform usage monitoring</strong><ul><li>No account is tagged by which modules it uses or how deeply. We invest on anecdote, and cannot say which customers are genuinely hard to move.</li></ul>"
+            "<strong>Platform usage monitoring</strong><ul><li>No account is tagged by which modules it uses or how deeply. We invest on anecdote, and cannot say which modules/capabilities customers use extensively. </li></ul>"
           ],
           "byMarket": {
             "sl": [],
