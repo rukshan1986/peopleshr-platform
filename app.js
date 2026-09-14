@@ -5,6 +5,39 @@
 (function(){
   var CAN_EDIT = !!window.PHR_EDIT;
 
+  /* Colour theme. Three states: follow the device, force light, force dark.
+     The choice is this visitor's alone, kept in their browser. The head
+     applies it before paint; this only wires the buttons and their state. */
+  (function(){
+    var KEY = "phr-theme", root = document.documentElement;
+    function current(){
+      try { return localStorage.getItem(KEY) || "system"; } catch(e){ return "system"; }
+    }
+    function apply(v){
+      if(v === "light" || v === "dark") root.setAttribute("data-theme", v);
+      else root.removeAttribute("data-theme");
+      var btns = document.querySelectorAll("[data-theme-set]");
+      Array.prototype.forEach.call(btns, function(b){
+        b.setAttribute("aria-pressed", b.dataset.themeSet === v ? "true" : "false");
+      });
+    }
+    function wire(){
+      var host = document.querySelector(".themesw");
+      if(!host) return;
+      host.addEventListener("click", function(e){
+        var b = e.target.closest("[data-theme-set]"); if(!b) return;
+        var v = b.dataset.themeSet;
+        try { v === "system" ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, v); }
+        catch(err){}
+        apply(v);
+      });
+      apply(current());
+    }
+    if(document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", wire);
+    else wire();
+  })();
+
   function fail(msg){
     document.getElementById("board").innerHTML =
       '<div class="loadfail"><h2>Could not load the content</h2><p>' + msg + '</p></div>';
@@ -26,6 +59,39 @@
       {k:"later", label:"Later", c:"--later", bg:"--laterbg"}
     ];
     var CAN_EDIT = !!window.PHR_EDIT;
+
+  /* Colour theme. Three states: follow the device, force light, force dark.
+     The choice is this visitor's alone, kept in their browser. The head
+     applies it before paint; this only wires the buttons and their state. */
+  (function(){
+    var KEY = "phr-theme", root = document.documentElement;
+    function current(){
+      try { return localStorage.getItem(KEY) || "system"; } catch(e){ return "system"; }
+    }
+    function apply(v){
+      if(v === "light" || v === "dark") root.setAttribute("data-theme", v);
+      else root.removeAttribute("data-theme");
+      var btns = document.querySelectorAll("[data-theme-set]");
+      Array.prototype.forEach.call(btns, function(b){
+        b.setAttribute("aria-pressed", b.dataset.themeSet === v ? "true" : "false");
+      });
+    }
+    function wire(){
+      var host = document.querySelector(".themesw");
+      if(!host) return;
+      host.addEventListener("click", function(e){
+        var b = e.target.closest("[data-theme-set]"); if(!b) return;
+        var v = b.dataset.themeSet;
+        try { v === "system" ? localStorage.removeItem(KEY) : localStorage.setItem(KEY, v); }
+        catch(err){}
+        apply(v);
+      });
+      apply(current());
+    }
+    if(document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", wire);
+    else wire();
+  })();
     var state = {q:"", pkg:new Set(), pil:new Set()};
     var ITEMEDIT = false, DELARM = false;
     var byId = {}; R.items.forEach(function(i){ byId[i.id]=i; });
@@ -1000,6 +1066,13 @@
     window.PHR.draftKey  = SKEY;
     window.PHR.rerender  = function(){ renderStrategy(); render(); };
     window.PHR.clearDraft = function(){ try{ localStorage.removeItem(SKEY); }catch(e){} };
+
+      /* A hash typed or pasted into an already open page switches the view,
+       so a shared #strategy link works whether or not the page was loaded. */
+    window.addEventListener("hashchange", function(){
+      var k = location.hash === "#strategy" ? "strategy" : "roadmap";
+      if(k !== view) show(k);
+    });
 
     window.addEventListener("resize", hh);
     renderStrategy();
