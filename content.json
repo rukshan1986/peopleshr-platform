@@ -1,0 +1,1068 @@
+{
+  "title": "PeoplesHR Platform",
+  "updated": "2026-09-07",
+  "packages": {
+    "Core HR": "#3b6fd4",
+    "Time": "#1f9d76",
+    "Leave": "#12a3a3",
+    "Payroll": "#c2701c",
+    "Lexi AI": "#7c53d4",
+    "Recruitment": "#c4406f",
+    "Performance": "#5a7a1f",
+    "Employee Services": "#a35a2a",
+    "Workforce Planning": "#2b7ea8",
+    "Platform": "#556170"
+  },
+  "lanes": {
+    "now": "In build or grooming",
+    "next": "Scoped and queued",
+    "later": "Direction set, not scoped"
+  },
+  "pillars": {
+    "Land": {
+      "key": "land",
+      "c": "#2d6fa8",
+      "ic": "flag",
+      "cls": "B",
+      "w": "30%",
+      "q": "How does a new customer say yes faster"
+    },
+    "Expand": {
+      "key": "expand",
+      "c": "#2f8f5b",
+      "ic": "growth",
+      "cls": "B",
+      "w": "20%",
+      "q": "How does an existing customer pay us more"
+    },
+    "Delight": {
+      "key": "delight",
+      "c": "#a3568c",
+      "ic": "heart",
+      "cls": "B",
+      "w": "10%",
+      "q": "Why does an existing customer want to stay"
+    },
+    "Defend": {
+      "key": "defend",
+      "c": "#a8701f",
+      "ic": "shield",
+      "cls": "B",
+      "w": "10%",
+      "q": "How is leaving genuinely hard"
+    },
+    "Moonshots": {
+      "key": "moon",
+      "c": "#6b52b8",
+      "ic": "rocket",
+      "cls": "B",
+      "w": "5%",
+      "q": "What changes the game in a year"
+    },
+    "Upkeep": {
+      "key": "upkeep",
+      "c": "#6b7683",
+      "ic": "wrench",
+      "cls": "A",
+      "w": "20%",
+      "q": "Platform health, defect load, tech debt, scaling headroom"
+    },
+    "Regulatory": {
+      "key": "reg",
+      "c": "#b04a4a",
+      "ic": "compliance",
+      "cls": "A",
+      "w": "5%",
+      "full": "Ad Hoc Regulatory Requirements",
+      "q": "Statutory gaps not yet covered in SL, PH and ID"
+    }
+  },
+  "items": [
+    {
+      "id": "t-consol",
+      "t": "Rule Engine Consolidation",
+      "d": "One page for every attendance rule instead of seven screens.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Attendance rules are spread across disconnected configuration screens, so nobody can see the full rule set that applies to an employee. The work covers: single consolidated configuration surface, rule precedence made explicit and validation across conflicting rules. It sits behind working hours, overtime, underworked, rest day and day relationship engines. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "https://peopleshr.monday.com/boards/1234567890/pulses/9876543210",
+        "ado": "https://dev.azure.com/hsenid/PeoplesHR/_workitems/edit/48213"
+      }
+    },
+    {
+      "id": "t-work",
+      "t": "Working Hours Rule Engine",
+      "d": "Define standard working time per shift pattern.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Working time definitions are hard coded per client and cannot express modern patterns. The work covers: configurable daily and weekly hour rules, tolerance and grace handling and effective dating. It sits behind shift definition. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-ot",
+      "t": "Overtime Rule Engine",
+      "d": "Configurable overtime thresholds, rates and approvals.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Overtime calculation is inconsistent across markets and requires code changes per statute. The work covers: threshold and multiplier configuration, approval routing and payroll handoff. It sits behind working hours rule engine. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-under",
+      "t": "Underworked Rule Engine",
+      "d": "Handle shortfall against contracted hours.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Shortfall is tracked manually and rarely feeds payroll or leave correctly. The work covers: shortfall detection, deduction and offset rules and exception reporting. It sits behind working hours rule engine. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-rest",
+      "t": "Rest Day Rule Engine",
+      "d": "Rest day entitlement and premium treatment.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Rest day rules vary by statute and are currently client specific customisation. The work covers: rest day assignment, premium rate handling and statutory variants. It sits behind shift definition. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-dayrel",
+      "t": "Day Relationship Engine",
+      "d": "How consecutive days interact for rules and premiums.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Cross midnight and consecutive day scenarios break current processing. The work covers: cross midnight handling, consecutive day chains and holiday adjacency. It sits behind rest day rule engine. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-shift",
+      "t": "Shift Definition",
+      "d": "Central shift library reusable across the platform.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Shifts are redefined per group with no reuse and no single source of truth. The work covers: shift library, break and split shift support and versioning. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-multi",
+      "t": "Multi Shift Scheduling",
+      "d": "Schedule employees across rotating and split shifts.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Organisations running multiple shifts cannot express their real patterns in the system. The work covers: rotation patterns, bulk schedule assignment and web and mobile views. It sits behind shift definition, scheduling employee groups. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-groups",
+      "t": "Scheduling Employee Groups",
+      "d": "Group employees once, schedule them together.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Schedules are assigned employee by employee at unusable scale. The work covers: dynamic group definition, group level assignment and override handling. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-capture",
+      "t": "Attendance Capture",
+      "d": "Web and mobile punch capture with offline tolerance.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Capture depends on device integrations that fail silently and cannot be reconciled. The work covers: web and mobile capture, geo and photo options and offline queue and sync. It sits behind shift definition. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-leaveimp",
+      "t": "Leave Attendance Impact",
+      "d": "Leave and attendance resolve against each other automatically.",
+      "s": "now",
+      "p": "Time",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Leave applied after attendance processing leaves records inconsistent and needs manual correction. The work covers: application and cancellation impact, retrospective recalculation and history trail. It sits behind attendance processing. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ai-insights",
+      "t": "Lexi Insights",
+      "d": "Ask workforce questions, get answers, charts and direction.",
+      "s": "now",
+      "p": "Lexi AI",
+      "pl": "Moonshots",
+      "detail": {
+        "thesis": "Workforce data sits in reports that leaders have to know how to find and how to read. The work covers: natural language querying over connected HR data, generated summaries and visuals and leadership dashboard surface. It sits behind reporting layer. It belongs to Moonshots because it is a bet on where the category moves inside a year. [replace with the evidence]",
+        "monday": "https://peopleshr.monday.com/boards/1234567890/pulses/9876543299",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ai-nav",
+      "t": "Lexi Smart Navigator",
+      "d": "Find the right page or function by asking.",
+      "s": "now",
+      "p": "Lexi AI",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Employees cannot find functions in a platform this wide, which drives avoidable support load. The work covers: intent to destination mapping, in product entry point and usage feedback loop. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ai-agent",
+      "t": "Lexi Super Agent",
+      "d": "Complete HR requests conversationally.",
+      "s": "now",
+      "p": "Lexi AI",
+      "pl": "Moonshots",
+      "detail": {
+        "thesis": "Routine requests require navigating multi step forms that employees abandon. The work covers: supported activity catalogue, conversational completion and approval integration. It sits behind lexi Smart Navigator. It belongs to Moonshots because it is a bet on where the category moves inside a year. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-proc",
+      "t": "Attendance Processing",
+      "d": "Rebuilt processing engine behind the new rule set.",
+      "s": "next",
+      "p": "Time",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Current processing cannot express the consolidated rule model. The work covers: processing engine rebuild, reprocessing and correction and audit trail. It sits behind all attendance rule engines. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-lock",
+      "t": "Attendance Lock",
+      "d": "Freeze periods once payroll has consumed them.",
+      "s": "next",
+      "p": "Time",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Attendance can be edited after payroll runs, which breaks reconciliation. The work covers: period locking, controlled unlock with reason and downstream notification. It sits behind attendance processing. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-adj",
+      "t": "Attendance Adjustments",
+      "d": "Correct records with a visible reason trail.",
+      "s": "next",
+      "p": "Time",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Corrections happen in the database with no reason and no trail. The work covers: adjustment workflow, reason codes and summary view web and mobile. It sits behind attendance processing. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-otapp",
+      "t": "Overtime Application",
+      "d": "Request and approve overtime before it is worked.",
+      "s": "next",
+      "p": "Time",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Overtime is approved after the fact, which removes cost control. The work covers: pre approval request, budget visibility and rejection handling. It sits behind overtime rule engine. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "t-reports",
+      "t": "Attendance Reports",
+      "d": "Standard report pack over the new model.",
+      "s": "next",
+      "p": "Time",
+      "pl": "Upkeep",
+      "detail": {
+        "thesis": "Existing reports read the old data model and will not survive the revamp. The work covers: core report set, export formats and scheduled delivery. It sits behind attendance processing. It belongs to Upkeep because it protects platform health and keeps the revamp from regressing. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pay-impact",
+      "t": "Attendance Payroll Impact",
+      "d": "Attendance outcomes flow into payroll without re keying.",
+      "s": "next",
+      "p": "Payroll",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Attendance to payroll handoff is partly manual and a recurring source of error. The work covers: structured handoff, variance reporting and retrospective correction. It sits behind attendance processing. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "wp-pit",
+      "t": "PIT Allocation",
+      "d": "Casino resource and floor planning as a platform module.",
+      "s": "next",
+      "p": "Workforce Planning",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Casino operators plan floor allocation outside the HR system entirely, keeping a whole segment out of reach. The work covers: table and position modelling, rotation and break planning and live floor view. It sits behind multi shift scheduling. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "es-cms",
+      "t": "Canteen Management Enhancements",
+      "d": "Enhancements raised by existing meal management users.",
+      "s": "next",
+      "p": "Employee Services",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Existing customers have raised enhancements that would materially improve daily use. The work covers: requested enhancement set, subsidy and entitlement rules and reporting. It sits behind decision on strategic fit. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "es-meal",
+      "t": "Meal Booking Mobile",
+      "d": "Book and cancel meals from the phone.",
+      "s": "next",
+      "p": "Employee Services",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Meal booking assumes a desk, which excludes most of the workforce that uses it. The work covers: mobile booking and cancellation, cut off enforcement and kitchen forecast view. It sits behind canteen management enhancements. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "lv-ent",
+      "t": "Leave Entitlement Engine",
+      "d": "Accrual, carry forward and encashment as configuration.",
+      "s": "next",
+      "p": "Leave",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Entitlement rules require customisation per client and per statute. The work covers: accrual rules, carry forward and expiry and encashment. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "lv-app",
+      "t": "Leave Application Redesign",
+      "d": "Faster application flow on web and mobile.",
+      "s": "next",
+      "p": "Leave",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "The application flow is long enough that employees route around it. The work covers: simplified flow, balance visibility at point of request and delegate approval. It sits behind leave entitlement engine. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "lv-cal",
+      "t": "Leave Calendar",
+      "d": "Team absence visible before leave is approved.",
+      "s": "next",
+      "p": "Leave",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Managers approve leave without seeing team coverage. The work covers: team and department views, coverage warnings and calendar export. It sits behind leave application redesign. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ai-recruit",
+      "t": "AI Recruitment Screening",
+      "d": "Rank and summarise applicants against the requisition.",
+      "s": "next",
+      "p": "Lexi AI",
+      "pl": "Moonshots",
+      "detail": {
+        "thesis": "High volume requisitions are screened manually and inconsistently. The work covers: applicant summarisation, requisition fit ranking and bias controls and audit. It sits behind candidate pipeline. It belongs to Moonshots because it is a bet on where the category moves inside a year. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ai-perf",
+      "t": "AI Performance Summaries",
+      "d": "Draft appraisal narrative from the evidence already captured.",
+      "s": "next",
+      "p": "Lexi AI",
+      "pl": "Moonshots",
+      "detail": {
+        "thesis": "Appraisal writing is the main reason cycles run late. The work covers: evidence aggregation, draft narrative generation and manager edit and approve. It sits behind continuous feedback. It belongs to Moonshots because it is a bet on where the category moves inside a year. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-cx",
+      "t": "Customer Experience Programme",
+      "d": "Named capacity against the top experience blockers.",
+      "s": "next",
+      "p": "Platform",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Customer experience has been named as the main new sales blocker, which makes it a platform problem rather than a support one. The work covers: experience blocker inventory, standing capacity allocation and measurement. It sits behind capacity allocation decision. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-mobile",
+      "t": "Mobile App Refresh",
+      "d": "Rebuild the employee app around the top ten tasks.",
+      "s": "next",
+      "p": "Platform",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "The mobile app mirrors the web navigation instead of the tasks employees actually do. The work covers: task led navigation, offline capability and push notification framework. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-report",
+      "t": "Reporting and Dashboard Builder",
+      "d": "Customers build their own reports without services work.",
+      "s": "next",
+      "p": "Platform",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Every non standard report becomes a services engagement. The work covers: self service report builder, dashboard composition and sharing and scheduling. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ch-eim",
+      "t": "Employee Information Redesign",
+      "d": "One record view replacing the tabbed EIM layout.",
+      "s": "next",
+      "p": "Core HR",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Employee data is spread across tabs that hide the information people actually need. The work covers: consolidated record view, configurable field groups and change history. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ch-docs",
+      "t": "Document Management",
+      "d": "Central employee document store with expiry alerts.",
+      "s": "next",
+      "p": "Core HR",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Employee documents live in file shares with no expiry tracking, which is a compliance exposure. The work covers: document store per employee, expiry alerting and access control. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ch-org",
+      "t": "Organisation Structure Builder",
+      "d": "Drag and drop hierarchy with effective dating.",
+      "s": "later",
+      "p": "Core HR",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Structure changes are data operations rather than something HR can perform. The work covers: visual hierarchy editing, effective dated changes and impact preview. It sits behind employee information redesign. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ch-elc",
+      "t": "Employee Lifecycle Workflows",
+      "d": "Configurable onboarding, transfer and exit flows.",
+      "s": "later",
+      "p": "Core HR",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Lifecycle events are checklists outside the system, so steps get missed. The work covers: workflow designer, task assignment and tracking and integration with access provisioning. It sits behind organisation structure builder. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ch-bulk",
+      "t": "Bulk Data Operations",
+      "d": "Mass update and import with validation and rollback.",
+      "s": "later",
+      "p": "Core HR",
+      "pl": "Upkeep",
+      "detail": {
+        "thesis": "Bulk changes require support intervention and cannot be reversed. The work covers: validated import, preview before commit and rollback. It belongs to Upkeep because it protects platform health and keeps the revamp from regressing. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ch-selfsvc",
+      "t": "Employee Self Service Refresh",
+      "d": "Rebuild the employee landing experience.",
+      "s": "later",
+      "p": "Core HR",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "The self service landing page shows modules rather than what the employee needs to do. The work covers: action led home, personalisation and announcement surface. It sits behind mobile app refresh. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pay-rules",
+      "t": "Payroll Rule Configuration",
+      "d": "Payroll rules as configuration rather than code.",
+      "s": "later",
+      "p": "Payroll",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Payroll variations require engineering work per client. The work covers: rule configuration surface, test and simulate and versioning. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pay-multi",
+      "t": "Multi Country Payroll",
+      "d": "Run payroll across statutory regimes in one instance.",
+      "s": "later",
+      "p": "Payroll",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Regional customers with staff in several countries run several instances. The work covers: country rule packs, consolidated reporting and currency handling. It sits behind payroll rule configuration. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pay-slip",
+      "t": "Payslip Redesign",
+      "d": "Readable payslip on web and mobile.",
+      "s": "later",
+      "p": "Payroll",
+      "pl": "Delight",
+      "detail": {
+        "thesis": "Payslip layout is a print artefact and generates avoidable payroll queries. The work covers: responsive payslip, explanation of variances and historical comparison. It belongs to Delight because it removes an experience blocker customers have named. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pay-stat",
+      "t": "Statutory Reporting Pack",
+      "d": "Statutory returns generated rather than assembled.",
+      "s": "later",
+      "p": "Payroll",
+      "pl": "Regulatory",
+      "detail": {
+        "thesis": "Statutory returns are assembled manually each period per market. The work covers: return templates per market, generation and validation and submission formats. It sits behind payroll rule configuration. It belongs to Regulatory because statutory coverage carries an effective date rather than a business case. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pay-ewa",
+      "t": "Earned Wage Access",
+      "d": "Draw earned pay before the pay date.",
+      "s": "later",
+      "p": "Payroll",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Employees turn to informal credit between pay dates. The work covers: accrued earnings calculation, draw limits and approvals and partner integration. It sits behind attendance payroll impact. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "lv-cancel",
+      "t": "Leave Cancellation and History",
+      "d": "Cancel cleanly with the trail intact.",
+      "s": "later",
+      "p": "Leave",
+      "pl": "Upkeep",
+      "detail": {
+        "thesis": "Cancellation leaves balances and attendance out of step. The work covers: cancellation workflow, balance restoration and full history. It sits behind leave attendance impact. It belongs to Upkeep because it protects platform health and keeps the revamp from regressing. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "rc-req",
+      "t": "Requisition Management",
+      "d": "Approval controlled hiring requests.",
+      "s": "later",
+      "p": "Recruitment",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Hiring starts before budget approval is recorded anywhere. The work covers: requisition workflow, budget and headcount link and status visibility. It sits behind headcount planning. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "rc-pipe",
+      "t": "Candidate Pipeline",
+      "d": "Stage based pipeline with collaboration.",
+      "s": "later",
+      "p": "Recruitment",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Candidate progress lives in spreadsheets and inboxes. The work covers: configurable stages, collaborative evaluation and source tracking. It sits behind requisition management. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "rc-sched",
+      "t": "Interview Scheduling",
+      "d": "Self scheduling against interviewer availability.",
+      "s": "later",
+      "p": "Recruitment",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Scheduling is the slowest step in most hiring processes. The work covers: availability capture, candidate self scheduling and calendar integration. It sits behind candidate pipeline. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "rc-offer",
+      "t": "Offer Management",
+      "d": "Generate, approve and track offers.",
+      "s": "later",
+      "p": "Recruitment",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Offers are drafted outside the system with no approval record. The work covers: offer generation, approval chain and acceptance tracking and onboarding handoff. It sits behind candidate pipeline. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-goals",
+      "t": "Goal Cascading",
+      "d": "Company goals visibly connected to individual goals.",
+      "s": "later",
+      "p": "Performance",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Individual goals have no traceable link to company objectives. The work covers: goal hierarchy, alignment view and progress rollup. It sits behind organisation structure builder. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-feedback",
+      "t": "Continuous Feedback",
+      "d": "Capture feedback through the year, not at cycle end.",
+      "s": "later",
+      "p": "Performance",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Appraisals rely on recall because nothing is captured in between. The work covers: lightweight feedback capture, check in cadence and evidence timeline. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-cycle",
+      "t": "Appraisal Cycle Automation",
+      "d": "Run the cycle without chasing it manually.",
+      "s": "later",
+      "p": "Performance",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "HR runs appraisal cycles through reminder emails and spreadsheets. The work covers: cycle configuration, automated reminders and escalation and completion dashboard. It sits behind continuous feedback. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-ninebox",
+      "t": "Nine Box Talent Grid",
+      "d": "Performance and potential in one view.",
+      "s": "later",
+      "p": "Performance",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Talent reviews are prepared manually for each session. The work covers: nine box placement, calibration support and succession linkage. It sits behind appraisal cycle automation. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "es-asset",
+      "t": "Asset Management",
+      "d": "Track what is issued to whom.",
+      "s": "later",
+      "p": "Employee Services",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Company assets are tracked outside the HR record and rarely recovered at exit. The work covers: asset register, issue and return workflow and exit checklist link. It sits behind employee lifecycle workflows. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "es-claims",
+      "t": "Travel and Claims",
+      "d": "Claim submission and approval in platform.",
+      "s": "later",
+      "p": "Employee Services",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Claims run on paper or finance spreadsheets with no HR visibility. The work covers: claim submission with attachments, policy limits and payroll and finance handoff. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "wp-head",
+      "t": "Headcount Planning",
+      "d": "Plan and approve headcount against budget.",
+      "s": "later",
+      "p": "Workforce Planning",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Headcount plans live in finance spreadsheets disconnected from hiring. The work covers: plan by unit and period, budget linkage and actual versus plan. It sits behind organisation structure builder. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "wp-demand",
+      "t": "Shift Demand Forecasting",
+      "d": "Forecast required cover before schedules are built.",
+      "s": "later",
+      "p": "Workforce Planning",
+      "pl": "Land",
+      "detail": {
+        "thesis": "Schedules are built from last week rather than from expected demand. The work covers: demand inputs, cover requirement generation and schedule seeding. It sits behind multi shift scheduling. It belongs to Land because it is a capability a new buyer in the Philippines or Indonesia evaluates directly. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "ai-signals",
+      "t": "Proactive Workforce Signals",
+      "d": "The platform raises what matters without being asked.",
+      "s": "later",
+      "p": "Lexi AI",
+      "pl": "Moonshots",
+      "detail": {
+        "thesis": "Insight requires someone to think of the question first, which competitors are moving past. The work covers: anomaly and trend detection, signal delivery to leaders and feedback on usefulness. It sits behind lexi Insights. It belongs to Moonshots because it is a bet on where the category moves inside a year. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-api",
+      "t": "Open API and Webhooks",
+      "d": "Documented API surface for customer integration.",
+      "s": "later",
+      "p": "Platform",
+      "pl": "Defend",
+      "detail": {
+        "thesis": "Every integration is a bespoke project because there is no documented public surface. The work covers: public API surface, webhook events and developer documentation and keys. It belongs to Defend because it deepens attendance and statutory ground that is hard to copy. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-sso",
+      "t": "Single Sign On and Access Control",
+      "d": "Enterprise identity and granular permissions.",
+      "s": "later",
+      "p": "Platform",
+      "pl": "Expand",
+      "detail": {
+        "thesis": "Enterprise buyers require identity integration and role granularity the platform does not offer. The work covers: SAML and OIDC, role based access model and access review reporting. It belongs to Expand because it is sellable into the Sri Lankan installed base as a priced add on. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-audit",
+      "t": "Audit and Compliance Register",
+      "d": "Statutory coverage visible per market.",
+      "s": "later",
+      "p": "Platform",
+      "pl": "Regulatory",
+      "detail": {
+        "thesis": "Compliance coverage per market is held in documents rather than in the product. The work covers: coverage register, change tracking and evidence export. It belongs to Regulatory because statutory coverage carries an effective date rather than a business case. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    },
+    {
+      "id": "pf-perf",
+      "t": "Platform Performance Programme",
+      "d": "Response time targets on the heaviest journeys.",
+      "s": "later",
+      "p": "Platform",
+      "pl": "Upkeep",
+      "detail": {
+        "thesis": "Performance complaints cluster on a small number of high volume screens. The work covers: journey instrumentation, target setting and remediation backlog. It sits behind customer experience programme. It belongs to Upkeep because it protects platform health and keeps the revamp from regressing. [replace with the evidence]",
+        "monday": "",
+        "ado": ""
+      }
+    }
+  ],
+  "strategy": {
+    "eyebrow": "PeoplesHR · Product · Draft for challenge",
+    "title": "Strategic Pillars and Roadmap Direction",
+    "dek": "How PeoplesHR's roadmap capacity is allocated across upkeep, regulatory work and five strategic pillars, broken out by market for Sri Lanka, the Philippines and Indonesia.",
+    "northstar": {
+      "figure": "$10M ARR",
+      "said": "Grow PeoplesHR annual recurring revenue from roughly $5.5M to $10M.",
+      "how": [
+        {
+          "markets": [
+            "ph",
+            "id"
+          ],
+          "text": "Growing into the Philippines and Indonesia by acquiring new logos"
+        },
+        {
+          "markets": [
+            "sl"
+          ],
+          "text": "Expanding ACV across the Sri Lanka installed base"
+        }
+      ]
+    },
+    "conditions": [
+      {
+        "label": "Philippines & Indonesia",
+        "markets": [
+          "ph",
+          "id"
+        ],
+        "text": "Improve the rate of conversion of new logos."
+      },
+      {
+        "label": "Sri Lanka",
+        "markets": [
+          "sl"
+        ],
+        "text": "Grow ACV through additional monetizable value adds."
+      }
+    ],
+    "protectedNote": "Funded whichever way the five pillars are argued, and not traded against them.",
+    "protected": {
+      "Upkeep": "Platform health, defect load, tech debt, scaling headroom.",
+      "Regulatory": "Statutory gaps the platform does not yet cover in Sri Lanka, the Philippines and Indonesia. This is a new logo lever in the Philippines, not only an obligation."
+    },
+    "detail": {
+      "Land": {
+        "sl": {
+          "marker": "Secondary",
+          "tone": "mid",
+          "text": "New Industry Focus"
+        },
+        "ph": {
+          "marker": "Primary",
+          "tone": "primary",
+          "text": "New Logo Engine"
+        },
+        "id": {
+          "marker": "Primary",
+          "tone": "primary",
+          "text": "Growing Beachhead"
+        },
+        "content": {
+          "general": [
+            "<strong>Improve Time to Yes</strong><ul><li>The platform lacks a defined, tiered starter package, so first-time buyers have no low-friction way in.</li></ul>",
+            "<strong>Improve Time to Implement</strong><ul><li>Implementation time is currently a point of friction with timelines extending past 3 months, it should be closer to 1 month.</li></ul>"
+          ],
+          "byMarket": {
+            "sl": [],
+            "ph": [
+              "Need to improve Payroll and Attendance compliance and localization.",
+              "Need to align the Attendance module to enable multi shift capability to cater to market demands in new industries (Education, Hospitality, Construction etc).",
+              "ELC is outdated, the platform needs a richer capability that meets current business needs.",
+              "Payroll does not support compensation planning.",
+              "Performance does not support the DOLE disciplinary flow.",
+              "Platform needs to upgrade the request tracker to be a true help desk.",
+              "Health and Well-being module is a growing need in PH."
+            ],
+            "id": [
+              "<strong>Improve Time to Yes</strong><ul><li>Support for mobile based workflow authorizations is lacking.</li><li>Notifications and approvals via external messaging platforms are lacking.</li></ul>",
+              "<strong>Improve Time to Implement</strong>"
+            ]
+          }
+        }
+      },
+      "Expand": {
+        "note": "Sri Lanka's ACV engine. Capability enhancement that has something attached to it commercially.",
+        "sl": {
+          "marker": "Primary",
+          "tone": "primary",
+          "text": "The add-on catalogue, module attach and the price book worked against the installed base."
+        },
+        "ph": {
+          "marker": "Follows",
+          "tone": "mid",
+          "text": "The same catalogue sold behind new logos rather than leading them."
+        },
+        "id": {
+          "marker": "Follows",
+          "tone": "mid",
+          "text": "The same catalogue, once there is a base to sell it into."
+        },
+        "content": {
+          "general": [
+            "<strong>Existing customers have little left to buy.</strong> Growth in Sri Lanka depends on account value rising, yet the four capabilities most likely to justify a price rise are each unfinished, unpackaged, or built for a single industry.",
+            "<ul><li>The Attendance revamp is scoped to the industries we already serve rather than the ones we want to enter</li><li>PIT Allocation solves rostering for casinos and cannot be sold outside that vertical</li><li>No agent based capability exists in a form that can be sold separately</li><li>Recruitment has drifted from what the market is currently asking for</li></ul>"
+          ],
+          "byMarket": {
+            "sl": [],
+            "ph": [
+              "The same catalogue, sold behind new logos."
+            ],
+            "id": [
+              "The same catalogue, sold behind new logos."
+            ]
+          }
+        }
+      },
+      "Delight": {
+        "note": "Distinct from Defend. Delight is customers who want to stay and shows up in NRR. Defend is customers who cannot leave and shows up in GRR.",
+        "sl": {
+          "marker": "Primary",
+          "tone": "primary",
+          "text": "Experience is what converts a base that stays for switching cost into a base that buys more."
+        },
+        "ph": {
+          "marker": "Reference value",
+          "tone": "mid",
+          "text": "Satisfied Philippine accounts become the proof new buyers ask for."
+        },
+        "id": {
+          "marker": "Reference value",
+          "tone": "mid",
+          "text": "Early Indonesian accounts set the reputation the market forms."
+        },
+        "content": {
+          "general": [
+            "<strong>Customer experience.</strong> Triaged modules, workflows and screens where a human remains in the loop after agentic workflows land."
+          ],
+          "byMarket": {
+            "sl": [],
+            "ph": [],
+            "id": []
+          }
+        }
+      },
+      "Defend": {
+        "note": "Ordered so it stops buying the wrong moat. Depth that customers choose, not depth that traps them.",
+        "sl": {
+          "marker": "Primary",
+          "tone": "mid",
+          "text": ""
+        },
+        "ph": {
+          "marker": "Secondary",
+          "tone": "primary",
+          "text": ""
+        },
+        "id": {
+          "marker": "Secondary",
+          "tone": "none",
+          "text": ""
+        },
+        "content": {
+          "general": [
+            "<strong>External systems</strong><ul><li>Integrations are built per customer, not offered by the platform. Each one is paid for once rather than holding the account, and a competitor rebuilds the set in a single implementation.</li></ul>",
+            "<strong>Statutory depth in Payroll and Attendance</strong><ul><li>Statutory rules live in per-customer configuration, not in the platform. Every change is rebuilt account by account, so no customer is safer for being on PeoplesHR.</li></ul>",
+            "<strong>Platform usage monitoring</strong><ul><li>No account is tagged by which modules it uses or how deeply. We invest on anecdote, and cannot say which customers are genuinely hard to move.</li></ul>"
+          ],
+          "byMarket": {
+            "sl": [],
+            "ph": [],
+            "id": []
+          }
+        }
+      },
+      "Moonshots": {
+        "note": "High risk and high reward bets. Small enough that a failure costs a rounding error, deliberate enough that a success is not an accident.",
+        "sl": {
+          "marker": "Test bed",
+          "tone": "mid",
+          "text": "An installed base to pilot against before it is sold."
+        },
+        "ph": {
+          "marker": "Differentiator",
+          "tone": "mid",
+          "text": "A reason to choose us in the new logo pitch."
+        },
+        "id": {
+          "marker": "Differentiator",
+          "tone": "mid",
+          "text": "A reason to choose us in the new logo pitch."
+        },
+        "content": {
+          "general": [
+            "<strong>External AI agents need a standard interface to connect to PHR.</strong>"
+          ],
+          "byMarket": {
+            "sl": [],
+            "ph": [],
+            "id": []
+          }
+        }
+      }
+    }
+  }
+}
