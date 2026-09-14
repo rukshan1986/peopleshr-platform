@@ -21,11 +21,22 @@ const COL = {
   thesis:   "Thesis",
   captured: "Date Insight Created",
   itemId:   "Item ID",
+  ado:      "Azure DevOps ID",
   notes:    "Notes",
   module:   "Module"
 };
 const LANES = { now: "now", next: "next", later: "later" };
 const SECTION = /problem\s*[/&+]?\s*opportunity/i;
+/* The Azure DevOps column normally holds a full work item URL. A bare number
+   is accepted too and turned into one against this base. */
+const ADO_BASE = (process.env.ADO_BASE_URL || "https://dev.azure.com/PeoplesHR/HRM").replace(/\/+$/, "");
+function adoUrl(raw){
+  const v = String(raw == null ? "" : raw).trim();
+  if(!v) return null;
+  if(/^https?:\/\//i.test(v)) return v;
+  const n = v.match(/(\d+)/);
+  return n ? ADO_BASE + "/_workitems/edit/" + n[1] : null;
+}
 const TITLE_BLOCK = /title$/i;
 
 function esc(s){
@@ -163,6 +174,7 @@ module.exports = async function handler(req, res){
       const pkgCell      = colValue(it, byTitle, COL.pkg);
       const capturedCell = colValue(it, byTitle, COL.captured);
       const notesCell    = colValue(it, byTitle, COL.notes);
+      const adoCell      = colValue(it, byTitle, COL.ado);
       const docCell      = colValue(it, byTitle, COL.thesis);
 
       let docId = null;
@@ -183,6 +195,7 @@ module.exports = async function handler(req, res){
         captured: (capturedCell && capturedCell.text) || null,
         notes: (notesCell && notesCell.text) || "",
         monday: "https://peopleshr-squad.monday.com/boards/" + board + "/pulses/" + it.id,
+        ado: adoUrl(adoCell && adoCell.text),
         thesis: null
       };
       items.push(entry);
