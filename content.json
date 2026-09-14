@@ -79,7 +79,7 @@
   },
   "items": [
     {
-      "id": "2854697896",
+      "id": "5029507352-2854697896",
       "t": "Employee Help Desk",
       "d": "One place to raise an HR request, with routing, SLAs and a visible trail.",
       "s": "now",
@@ -93,7 +93,7 @@
       }
     },
     {
-      "id": "2854730893",
+      "id": "5029507352-2854730893",
       "t": "Workflow Actions via Messaging",
       "d": "Approve and act on workflow tasks from WhatsApp, without entering PHR.",
       "s": "now",
@@ -107,7 +107,7 @@
       }
     },
     {
-      "id": "2854734442",
+      "id": "5029507352-2854734442",
       "t": "AI Insights via Messaging",
       "d": "Ask workforce questions from Teams, WhatsApp or Google Chat.",
       "s": "now",
@@ -121,7 +121,7 @@
       }
     },
     {
-      "id": "2854664562",
+      "id": "5029507352-2854664562",
       "t": "PHR Agentic Twin",
       "d": "One conversational interface across the whole platform, not another module.",
       "s": "now",
@@ -135,7 +135,7 @@
       }
     },
     {
-      "id": "2854866908",
+      "id": "5029507352-2854866908",
       "t": "Asynchronous Report Generation",
       "d": "Heavy reports process in the background while light ones stay instant.",
       "s": "now",
@@ -149,7 +149,7 @@
       }
     },
     {
-      "id": "2854744086",
+      "id": "5029507352-2854744086",
       "t": "Lexi Chatbot via Messaging",
       "d": "Employee self service through the chat apps people already use.",
       "s": "next",
@@ -372,6 +372,7 @@
   "source": {
     "board": "2H 2026",
     "url": "https://peopleshr-squad.monday.com/boards/5029507352",
-    "note": "Item ids, lanes and pillars come from the 2H 2026 board: the Item ID column, the Now / Next / Later groups, and the S Pillar column. Thesis is the Problem / Opportunity section of each item's Thesis document."
+    "note": "Item ids are the board number and the Item ID column joined (5029507352-<item>). Lanes come from the Now / Next / Later groups and pillars from the S Pillar column. Thesis is the Problem / Opportunity section of each item's Thesis document.",
+    "board_id": "5029507352"
   }
 }

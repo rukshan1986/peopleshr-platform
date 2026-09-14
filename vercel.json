@@ -5,22 +5,55 @@
     {
       "source": "/content.json",
       "headers": [
-        { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, must-revalidate"
+        }
       ]
     },
     {
       "source": "/editor.html",
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
-        { "key": "Cache-Control", "value": "no-cache" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/sync.js": {
+      "maxDuration": 60
+    }
+  }
 }

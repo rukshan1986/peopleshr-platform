@@ -1077,6 +1077,13 @@
     window.PHR.rerender  = function(){ renderStrategy(); render(); };
     window.PHR.clearDraft = function(){ try{ localStorage.removeItem(SKEY); }catch(e){} };
 
+    /* The monday.com sync in edit.js writes straight into the document, so it
+       needs to save the draft and rebuild the id index after changing items. */
+    window.PHR.persist = persist;
+    window.PHR.reindex = function(){
+      byId = {}; R.items.forEach(function(i){ byId[i.id] = i; });
+    };
+
       /* A hash typed or pasted into an already open page switches the view,
        so a shared #strategy link works whether or not the page was loaded. */
     window.addEventListener("hashchange", function(){

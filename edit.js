@@ -10,7 +10,8 @@
    leaves your machine except as an Authorization header to api.github.com.  */
 (function(){
   var CFG_KEY = "phr-platform-publish-cfg-v1";
-  var bar, cfg = {owner:"", repo:"", branch:"main", path:"content.json", token:""};
+  var bar, cfg = {owner:"", repo:"", branch:"main", path:"content.json", token:"",
+                syncUrl:"/api/sync", syncKey:""};
 
   try {
     var raw = localStorage.getItem(CFG_KEY);
@@ -65,6 +66,7 @@
       '</span>' +
       '<span class="pacts">' +
         (d ? '<button type="button" class="pbtn ghost" id="pDiscard">Discard draft</button>' : "") +
+        '<button type="button" class="pbtn" id="pSync">Sync from monday.com</button>' +
         '<button type="button" class="pbtn" id="pSetup">' + (ok ? "Settings" : "Connect repository") + '</button>' +
         '<button type="button" class="pbtn prim" id="pGo"' + (d && ok ? "" : " disabled") + '>Publish</button>' +
       '</span>' +
@@ -72,6 +74,7 @@
 
     document.getElementById("pGo").onclick = publish;
     document.getElementById("pSetup").onclick = setup;
+    document.getElementById("pSync").onclick = sync;
     var dc = document.getElementById("pDiscard");
     if(dc) dc.onclick = function(){
       if(dc.dataset.armed !== "1"){ dc.dataset.armed = "1"; dc.textContent = "Confirm discard"; return; }
@@ -102,6 +105,12 @@
       '<label class="edlab">Fine-grained token, Contents read and write on that repository</label>' +
       '<input id="cToken" type="password" value="' + esc(cfg.token) + '" placeholder="github_pat_...">' +
       '<p class="phint">Kept in this browser only. Anyone who can use this browser profile can read it, so scope the token to this one repository and revoke it if the machine changes hands.</p>' +
+      '<h4>Syncing from monday.com</h4>' +
+      '<div class="frow2">' +
+        '<div><label class="edlab">Sync endpoint</label><input id="cSyncUrl" type="text" value="' + esc(cfg.syncUrl) + '" placeholder="/api/sync"></div>' +
+        '<div><label class="edlab">Sync key</label><input id="cSyncKey" type="password" value="' + esc(cfg.syncKey) + '" placeholder="matches SYNC_KEY in Vercel"></div>' +
+      '</div>' +
+      '<p class="phint">The monday.com token lives in the Vercel project, not here. This key only proves the request came from you.</p>' +
       '<div class="edact">' +
         '<button type="button" class="btn-sv" id="cSave">Save</button>' +
         '<button type="button" class="btn-cx" id="cClose">Close</button>' +
@@ -114,6 +123,8 @@
       cfg.repo   = document.getElementById("cRepo").value.trim();
       cfg.branch = document.getElementById("cBranch").value.trim() || "main";
       cfg.token  = document.getElementById("cToken").value.trim();
+      cfg.syncUrl = document.getElementById("cSyncUrl").value.trim() || "/api/sync";
+      cfg.syncKey = document.getElementById("cSyncKey").value.trim();
       saveCfg(); sheet.remove(); render(); status("Saved", "ok");
     };
     document.getElementById("cClose").onclick = function(){ sheet.remove(); };
@@ -185,6 +196,154 @@
         go.disabled = false;
         status(err.message, "bad");
       });
+  }
+
+  /* ── syncing from the monday.com board ──────────────────────────────────
+     The browser calls this site's own /api/sync, which does the monday.com
+     work server-side. What comes back is merged into the draft: the board
+     owns lane, pillar, package, capture date, link and thesis, while the
+     card title and one-line summary stay yours to write. Nothing reaches
+     the public site until you press Publish.                              */
+
+  function shortTitle(name){
+    var t = String(name || "").split(/\s+[–—-]\s+/)[0].trim();
+    return t.length > 52 ? t.slice(0, 51).trim() + "…" : t;
+  }
+  function firstSentence(s){
+    var t = String(s || "").trim();
+    if(!t) return "";
+    var m = t.match(/^.{20,150}?[.!?](\s|$)/);
+    t = m ? m[0].trim() : (t.length > 140 ? t.slice(0, 139).trim() + "…" : t);
+    return t;
+  }
+
+  function sync(){
+    var btn = document.getElementById("pSync");
+    if(!cfg.syncKey){
+      setup();
+      status("Add a sync key first. It has to match SYNC_KEY in the Vercel project.", "bad");
+      return;
+    }
+    btn.disabled = true;
+    status("Reading the board…");
+
+    fetch(cfg.syncUrl, {
+      method: "POST",
+      cache: "no-store",
+      headers: { "x-sync-key": cfg.syncKey, "Content-Type": "application/json" }
+    })
+      .then(function(r){
+        return r.json().catch(function(){ return null; }).then(function(j){
+          if(r.status === 404) throw new Error("No sync endpoint at " + cfg.syncUrl + ". Deploy api/sync.js and try again.");
+          if(j && j.error) throw new Error(j.error);
+          if(!r.ok) throw new Error("The sync endpoint returned HTTP " + r.status + ".");
+          if(!j || !j.ok) throw new Error("The sync endpoint returned something unexpected.");
+          return j;
+        });
+      })
+      .then(function(payload){
+        var res = merge(payload);
+        btn.disabled = false;
+        report(payload, res);
+      })
+      .catch(function(err){
+        btn.disabled = false;
+        var m = /failed to fetch|networkerror/i.test(err.message || "")
+          ? "Could not reach " + cfg.syncUrl + ". Check the site is deployed and you are online."
+          : err.message;
+        status(m, "bad");
+      });
+  }
+
+  function merge(payload){
+    var doc = window.PHR.doc();
+    var pkgKeys = Object.keys(doc.packages || {});
+    var pilKeys = Object.keys(doc.pillars || {});
+    var laneKeys = Object.keys(doc.lanes || {now:1,next:1,later:1});
+
+    var index = {};
+    doc.items.forEach(function(i){ index[i.id] = i; });
+
+    var added = [], changed = [], unchanged = 0, notes = [];
+    var seen = {};
+
+    payload.items.forEach(function(m){
+      seen[m.id] = true;
+      var cur = index[m.id], isNew = !cur, diffs = [];
+
+      if(isNew){
+        cur = {
+          id: m.id,
+          t: shortTitle(m.name),
+          d: firstSentence(m.notes),
+          s: laneKeys.indexOf(m.lane) >= 0 ? m.lane : laneKeys[0],
+          p: pkgKeys[0],
+          pl: pilKeys[0],
+          detail: { captured:"", monday:"", ado:"", thesis:"" }
+        };
+        doc.items.push(cur);
+        index[cur.id] = cur;
+      }
+      cur.detail = cur.detail || {};
+
+      function set(obj, key, val, label){
+        if(val == null || val === "" || obj[key] === val) return;
+        if(!isNew) diffs.push(label);
+        obj[key] = val;
+      }
+
+      if(laneKeys.indexOf(m.lane) < 0) notes.push('"' + cur.t + '" is in a group this site has no lane for.');
+      else set(cur, "s", m.lane, "lane");
+
+      if(m.pillar){
+        if(pilKeys.indexOf(m.pillar) < 0) notes.push('"' + cur.t + '" has pillar "' + m.pillar + '", which is not one of the seven on this site, so it was left alone.');
+        else set(cur, "pl", m.pillar, "pillar");
+      }
+      if(m.pkg){
+        if(pkgKeys.indexOf(m.pkg) < 0) notes.push('"' + cur.t + '" has package "' + m.pkg + '", which is not one of this site’s packages, so it was left alone.');
+        else set(cur, "p", m.pkg, "package");
+      }
+      set(cur.detail, "captured", m.captured, "captured date");
+      set(cur.detail, "monday", m.monday, "monday link");
+      set(cur.detail, "thesis", m.thesis, "thesis");
+
+      if(isNew) added.push(cur.t);
+      else if(diffs.length) changed.push(cur.t + " (" + diffs.join(", ") + ")");
+      else unchanged++;
+    });
+
+    var missing = doc.items.filter(function(i){ return !seen[i.id]; })
+                           .map(function(i){ return i.t; });
+
+    window.PHR.reindex();
+    window.PHR.persist();
+    window.PHR.rerender();
+    return { added:added, changed:changed, unchanged:unchanged, missing:missing, notes:notes };
+  }
+
+  function report(payload, res){
+    var old = document.getElementById("pSheet");
+    if(old) old.remove();
+
+    var parts = [];
+    parts.push(res.added.length + " added, " + res.changed.length + " changed, " + res.unchanged + " unchanged");
+    status("Synced from " + (payload.board ? payload.board.name : "the board") + ". " + parts[0] + ".", "ok");
+
+    var lines = [];
+    if(res.added.length)   lines.push("<h4>Added</h4><ul><li>" + res.added.map(esc).join("</li><li>") + "</li></ul>");
+    if(res.changed.length) lines.push("<h4>Changed</h4><ul><li>" + res.changed.map(esc).join("</li><li>") + "</li></ul>");
+    if(res.missing.length) lines.push("<h4>On the site but not on the board</h4><ul><li>" + res.missing.map(esc).join("</li><li>") +
+                                      "</li></ul><p class=\"phint\">These were left in place. Delete them from a capability drawer if they should go.</p>");
+    var warn = (payload.warnings || []).concat(res.notes);
+    if(warn.length)        lines.push("<h4>Worth knowing</h4><ul><li>" + warn.map(esc).join("</li><li>") + "</li></ul>");
+    if(!lines.length)      lines.push("<p class=\"phint\">The site already matched the board. Nothing changed.</p>");
+
+    var sheet = document.createElement("div");
+    sheet.id = "pSheet"; sheet.className = "psheet";
+    sheet.innerHTML = "<h4>Sync result</h4>" + lines.join("") +
+      '<div class="edact"><button type="button" class="btn-cx" id="sClose">Close</button></div>';
+    bar.after(sheet);
+    document.getElementById("sClose").onclick = function(){ sheet.remove(); };
   }
 
   function init(){
