@@ -221,6 +221,10 @@ module.exports = async function handler(req, res){
     res.status(200).json({
       ok: true,
       board: { id: b.id, name: b.name },
+      /* Which optional columns exist on the board. The editor only clears a
+         value the board owns when its column is actually there, so renaming a
+         column cannot silently wipe the site. */
+      columns: { ado: !!byTitle[COL.ado] },
       fetchedAt: new Date().toISOString(),
       items: items,
       warnings: warnings
