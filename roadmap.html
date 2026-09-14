@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PeoplesHR Platform Roadmap</title>
+<meta name="description" content="The PeoplesHR product roadmap, Now to Later.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="PeoplesHR Platform Roadmap">
+<meta property="og:description" content="The PeoplesHR product roadmap, Now to Later.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f8a63'/%3E%3Cpath d='M9 22V10h5.2a3.9 3.9 0 0 1 0 7.8H12V22z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<style>/* roadmap only: no tab strip, whatever app.js thinks */
+.tabsrow{display:none!important}</style>
+<script>/* applied before first paint so the page never flashes the wrong theme */
+try{var t=localStorage.getItem("phr-theme");
+if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="titlerow">
+      <h1 id="ttl"></h1>
+      <span class="stamp" id="stamp"></span>
+      <div class="themesw" role="group" aria-label="Colour theme">
+        <button type="button" data-theme-set="system" aria-pressed="false" title="Match my device"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20.2h6M12 16.5v3.7"/></svg></button>
+        <button type="button" data-theme-set="light" aria-pressed="false" title="Light"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.9"/><path d="M12 2.6v2.1M12 19.3v2.1M4.3 4.3l1.5 1.5M18.2 18.2l1.5 1.5M2.6 12h2.1M19.3 12h2.1M4.3 19.7l1.5-1.5M18.2 5.8l1.5-1.5"/></svg></button>
+        <button type="button" data-theme-set="dark" aria-pressed="false" title="Dark"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.4 14.6A8.6 8.6 0 0 1 9.4 3.6a8.6 8.6 0 1 0 11 11z"/></svg></button>
+      </div>
+    </div>
+    <div class="tabsrow"><div class="tabs" role="tablist" id="tabs"></div></div>
+    <div class="controls" id="rmControls">
+      <div class="search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search capabilities" autocomplete="off">
+      </div>
+      <div class="filt" id="fPkg"></div>
+      <span class="count" id="count"></span>
+      <button class="reset" id="reset" hidden>Clear all</button>
+    </div>
+    <div class="pillars" id="pillars"></div>
+  </header>
+
+  <main class="view doc" id="viewStrategy" role="tabpanel" aria-labelledby="tab-strategy" hidden></main>
+
+  <main class="view" id="viewRoadmap" role="tabpanel" aria-labelledby="tab-roadmap">
+    <div class="board" id="board"></div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dttl">
+  <div class="dhead">
+    <div class="dtags">
+      <span class="tag sec" id="dsec"></span>
+      <span class="tag pkg" id="dpkg"></span>
+      <span class="tag pil" id="dpil"></span>
+      <button class="close" id="dedit" aria-label="Edit this capability" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.2a2.6 2.6 0 1 1 3.7 3.7L7.6 19.5 2.6 21l1.5-5z"/></svg>
+      </button>
+      <button class="close" id="close" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <h2 id="dttl"></h2>
+    <div class="dcap" id="dcap" hidden></div>
+  </div>
+  <div class="dbody" id="dbody"></div>
+</aside>
+<script>/* Roadmap only. The tab strip is gone, the strategy view is never
+   opened, and on the roadmap hostname content.json arrives with the strategy
+   already removed, so it is not in the page to be found.
+
+   The flag is for app.js. The hash handling below makes this page stand on its
+   own even against an older app.js that has never heard of the flag: a
+   #strategy in the address is wiped before app.js can read it, on load and on
+   every later change. */
+window.PHR_ROADMAP_ONLY = true;
+(function(){
+  function strip(){
+    if(!location.hash) return;
+    try { history.replaceState(null, "", location.pathname + location.search); }
+    catch(e){}
+  }
+  strip();
+  window.addEventListener("hashchange", strip);
+})();</script>
+<script src="app.js"></script>
+</body>
+</html>
