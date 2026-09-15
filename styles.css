@@ -426,7 +426,10 @@ button.slice:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .field h4{margin:0 0 6px;font-size:10.5px;font-weight:650;letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink3)}
 .field p{margin:0;font-size:14px;line-height:1.6;color:var(--ink)}
-.field p + p,.field p + ul,.field ul + p{margin-top:11px}
+.field p + p,.field p + ul,.field ul + p,.field p + ol,.field ol + p{margin-top:11px}
+.field h5{margin:18px 0 7px;font-size:13px;font-weight:650;letter-spacing:-.005em;color:var(--ink)}
+.field h5:first-child{margin-top:0}
+.field ol{margin:0;padding-left:19px}
 .field strong{font-weight:650}
 .dcap{margin-top:7px;font-size:12.5px;color:var(--ink3)}
 .field ul{margin:0;padding-left:17px}
