@@ -371,7 +371,7 @@
        pasted in or produced by execCommand is safe to render. */
     function rich(html){
       var INLINE = {STRONG:"strong", B:"strong", EM:"em", I:"em"};
-      var LIST   = {UL:"ul", OL:"ol", LI:"li", P:"p"};
+      var LIST   = {UL:"ul", OL:"ol", LI:"li", P:"p", H5:"h5"};   /* h5 = a heading inside a synced monday document */
       var box = document.createElement("div");
       box.innerHTML = String(html == null ? "" : html);
       function walk(node){
