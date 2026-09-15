@@ -303,9 +303,7 @@
         },
         "content": {
           "general": [
-            "Customer experience",
-            "The guidance for a new operational user to understand and execute a complex workflow is not sufficient.",
-            "The time it takes to do certain workflows is extensive in certain cases."
+            "Customer experience<ul><li>The guidance for a new operational user to understand and execute a complex workflow is not sufficient.</li><li>The time it takes to do certain workflows is extensive in certain cases.</li></ul>"
           ],
           "byMarket": {
             "sl": [],
