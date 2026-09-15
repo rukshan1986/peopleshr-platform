@@ -687,7 +687,8 @@
           h += '<div class="qrow"><p class="pq">'+esc(P.q)+'</p>'+
                edBtn('data-edit="q" data-p="'+esc(p)+'"',"")+'</div>';
         }
-        if(d.note) h += '<p class="note">'+esc(d.note)+'</p>';
+        /* the pillar question carries the section on its own, so the secondary
+           note under it is not rendered. The text stays in content.json. */
 
         /* problem space and strategy: always shown */
         h += section(GENERAL_LABEL, "", "general", d.content.general,
