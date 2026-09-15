@@ -270,8 +270,7 @@
         },
         "content": {
           "general": [
-            "<strong>Existing customers have little left to buy.</strong> Growth in Sri Lanka depends on account value rising, yet the four capabilities most likely to justify a price rise are each unfinished, unpackaged, or built for a single industry.",
-            "<ul><li>The Attendance revamp is scoped to the industries we already serve rather than the ones we want to enter</li><li>PIT Allocation solves rostering for casinos and cannot be sold outside that vertical</li><li>No agent based capability exists in a form that can be sold separately</li><li>Recruitment has drifted from what the market is currently asking for</li></ul>"
+            "<strong>Existing customers have little left to buy.</strong> <ul><li>The Attendance revamp is scoped to the industries we already serve rather than the ones we want to enter</li><li>PIT Allocation solves rostering for casinos </li><li>No agent based capability exists in a form that can be sold separately</li><li>Recruitment has drifted from what the market is currently asking for</li></ul>"
           ],
           "byMarket": {
             "sl": [],
@@ -303,7 +302,7 @@
         },
         "content": {
           "general": [
-            "Customer experience<ul><li>The guidance for a new operational user to understand and execute a complex workflow is not sufficient.</li><li>The time it takes to do certain workflows is extensive in certain cases.</li></ul>"
+            "<strong>Customer experience</strong><ul><li>The guidance for a new operational user to understand and execute a complex workflow is not sufficient.</li><li>The time it takes to do certain workflows is extensive in certain cases.</li></ul>"
           ],
           "byMarket": {
             "sl": [],
