@@ -243,6 +243,3 @@ module.exports = async function handler(req, res){
     res.status(502).json({ ok:false, error: e.message || String(e), warnings: warnings });
   }
 };
-
-/* exposed for the offline test only */
-module.exports.__test = { problemOpportunity: problemOpportunity };
