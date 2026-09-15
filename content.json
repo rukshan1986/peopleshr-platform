@@ -332,8 +332,7 @@
         "content": {
           "general": [
             "<strong>External systems</strong><ul><li>Integrations are built per customer, not offered by the platform. Each one is paid for once rather than holding the account, and a competitor rebuilds the set in a single implementation.</li></ul>",
-            "<strong>Statutory depth in Payroll and Attendance</strong><ul><li>Statutory rules live in per-customer configuration, not in the platform. Every change is rebuilt account by account, so no customer is safer for being on PeoplesHR.</li></ul>",
-            "<strong>Platform usage monitoring</strong><ul><li>No account is tagged by which modules it uses or how deeply. We invest on anecdote, and cannot say which modules/capabilities customers use extensively. </li></ul>"
+            "<strong>Statutory depth in Payroll and Attendance</strong><ul><li>Statutory rules live in per-customer configuration, not in the platform. Every change is rebuilt account by account, so no customer is safer for being on PeoplesHR.</li></ul>"
           ],
           "byMarket": {
             "sl": [],
@@ -361,7 +360,8 @@
         },
         "content": {
           "general": [
-            "<strong>External AI agents need a standard interface to connect to PHR.</strong>"
+            "<strong>External AI agents need a standard interface to connect to PHR.</strong>",
+            "<strong>Platform usage monitoring </strong><ul><li>No account is tagged by which modules it uses or how deeply. We invest on anecdote, and cannot say which modules/capabilities customers use extensively.</li></ul>"
           ],
           "byMarket": {
             "sl": [],
