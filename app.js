@@ -321,7 +321,8 @@
     var ICO = {
       board:  '<rect x="3.6" y="4.6" width="16.8" height="14.8" rx="2.6"/><path d="M9.2 4.6v14.8M14.8 4.6v14.8"/>',
       ticket: '<path d="M3.8 11.2l7.4-7.4h7.2a1.8 1.8 0 0 1 1.8 1.8v7.2l-7.4 7.4a1.6 1.6 0 0 1-2.3 0l-6.7-6.7a1.6 1.6 0 0 1 0-2.3z"/><circle cx="15.6" cy="8.4" r="1.5"/>',
-      arrow:  '<path d="M7.5 16.5L16.5 7.5M9.5 7.5h7v7"/>'
+      arrow:  '<path d="M7.5 16.5L16.5 7.5M9.5 7.5h7v7"/>',
+      tap:    '<path d="M9 11.4V6.3a1.8 1.8 0 0 1 3.6 0v7.3"/><path d="M12.6 12.1a1.7 1.7 0 0 1 3.4 0v.8"/><path d="M16 12.9a1.7 1.7 0 0 1 3.4 0v3a5.6 5.6 0 0 1-5.6 5.6h-1a5 5 0 0 1-3.6-1.5l-3.3-3.4a1.8 1.8 0 0 1 2.6-2.5L9 15z"/>'
     };
     function ico(pathStr, size){
       return '<svg viewBox="0 0 24 24" width="'+(size||15)+'" height="'+(size||15)+'" aria-hidden="true" '+
@@ -588,7 +589,7 @@
       h += '<header class="shero">'+
         '<div class="eyebrow">'+esc(S.eyebrow)+'</div>'+
         '<h2>'+esc(S.title)+'</h2>'+
-        '<p class="dek">'+esc(S.dek)+'</p>'+
+        (S.dek ? '<p class="dek">'+esc(S.dek)+'</p>' : "")+
         '<div class="ns">'+
           '<div class="eyebrow lbl">Organisational north star</div>'+
           '<div><div class="fig">'+esc(S.northstar.figure)+'</div>'+
@@ -601,8 +602,8 @@
 
       h += '<section class="sec"><div class="sechead"><div class="eyebrow">Execution</div>'+
         '<h3>What has to be true in each market</h3>'+
-        '<p>The two routes above, turned into the conditions the roadmap has to satisfy. '+
-        'Every weight that follows answers to one of them.</p></div><div class="cards2">'+
+        '<p>The two routes above, turned into the conditions the roadmap has to satisfy.</p>'+
+        '</div><div class="cards2">'+
         S.conditions.map(function(c){
           return '<div class="ccard"><div class="eyebrow">Condition for success</div>'+
                  '<div class="mk"><span class="fl">'+flags(c.markets)+'</span>'+esc(c.label)+'</div>'+
@@ -618,12 +619,15 @@
 
       var slices = ordered.map(function(p){
         var P = R.pillars[p], w = pct(P.w), narrow = w < NARROW;
-        var attr = P.cls === "A" ? 'data-scroll="protected"' : 'data-open="'+esc(p)+'"';
+        var body = (narrow?"":'<span class="sn">'+esc(p)+'</span>')+
+                   '<span class="sv">'+w+'%</span>';
+        if(P.cls === "A")   /* protected: a share to see, with no section behind it */
+          return '<div class="slice flat'+(narrow?" narrow":"")+'" '+
+                 'style="flex:'+w+';--c:'+P.c+'" '+
+                 'aria-label="'+esc(p)+', '+w+' percent">'+body+'</div>';
         return '<button type="button" class="slice'+(narrow?" narrow":"")+'" '+
-               'style="flex:'+w+';--c:'+P.c+'" '+attr+' '+
-               'aria-label="'+esc(p)+', '+w+' percent, open its section">'+
-               (narrow?"":'<span class="sn">'+esc(p)+'</span>')+
-               '<span class="sv">'+w+'%</span></button>';
+               'style="flex:'+w+';--c:'+P.c+'" data-open="'+esc(p)+'" '+
+               'aria-label="'+esc(p)+', '+w+' percent, open its section">'+body+'</button>';
       }).join("");
 
       var callouts = ordered.map(function(p,i){
@@ -635,8 +639,7 @@
 
       h += '<section class="sec"><div class="sechead"><div class="eyebrow">Capacity</div>'+
         '<h3>Where roadmap capacity goes</h3>'+
-        '<p>The whole of roadmap capacity, sliced seven ways. Width is share, so the picture and '+
-        'the numbers say the same thing. Click a slice to open its section.</p></div>'+
+        '<p class="cue">'+ico(ICO.tap,15)+'Click a slice to open its section</p></div>'+
         '<div class="brackets">'+
           '<div class="bkt" style="flex:'+sumB+'"><span class="bn">Contested pillars</span>'+
           '<span class="bs">'+sumB+'%</span></div>'+
@@ -644,23 +647,11 @@
           '<span class="bs">'+sumA+'%</span></div>'+
         '</div>'+
         '<div class="band">'+slices+'</div><div class="callouts">'+callouts+'</div>'+
-        '<div class="subhead" id="protected"><h4>Protected investments</h4>'+
-        '<p>'+esc(S.protectedNote)+'</p></div>'+
-        '<div class="cards2">'+
-          A.map(function(p){
-            var P = R.pillars[p];
-            return '<div class="acard" style="--c:'+P.c+'">'+
-              '<div class="nr"><span class="pic">'+glyph(P.ic)+'</span>'+
-              '<h4>'+esc(P.full || p)+'</h4><span class="wt">'+esc(P.w)+'</span></div>'+
-              '<p>'+esc(S.protected[p] || P.q)+'</p></div>';
-          }).join("")+
-        '</div></section>';
+        '</section>';
 
       h += '<section class="sec"><div class="sechead"><div class="eyebrow">Roadmap</div>'+
         '<h3>Product Roadmap Strategy</h3>'+
-        '<p>Click a pillar to open it. Problem Space and Strategy always shows, and clicking a '+
-        'market loads what is specific to it. The question, the problem space, the market claims '+
-        'and the market-specific strategy are all editable.</p></div>';
+        '<p class="cue">'+ico(ICO.tap,15)+'Click a pillar to open it</p></div>';
 
       /* overview grid: one card per contested pillar, one open at a time */
       h += '<div class="povgrid">'+ B.map(function(p){
