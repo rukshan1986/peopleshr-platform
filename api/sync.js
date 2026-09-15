@@ -26,7 +26,6 @@ const COL = {
   module:   "Module"
 };
 const LANES = { now: "now", next: "next", later: "later" };
-const SECTION = /problem\s*[/&+]?\s*opportunity/i;
 /* The Azure DevOps column normally holds a full work item URL. A bare number
    is accepted too and turned into one against this base. */
 const ADO_BASE = (process.env.ADO_BASE_URL || "https://dev.azure.com/PeoplesHR/HRM").replace(/\/+$/, "");
@@ -38,6 +37,7 @@ function adoUrl(raw){
   return n ? ADO_BASE + "/_workitems/edit/" + n[1] : null;
 }
 const TITLE_BLOCK = /title$/i;
+const LIST_BLOCK = { "bulleted list": "ul", "check list": "ul", "numbered list": "ol" };
 
 function esc(s){
   return String(s == null ? "" : s)
@@ -62,9 +62,8 @@ async function gql(query, variables, token){
 }
 
 /* A monday doc is a flat list of blocks. Each block's content is JSON holding
-   deltaFormat runs. We take everything between the Problem / Opportunity
-   heading and the next heading, and render the same small subset of HTML the
-   page already sanitises to: p, ul, ol, li, strong, em.                     */
+   deltaFormat runs. The whole document is rendered, in order, into the small
+   subset of HTML the page sanitises to: h5, p, ul, ol, li, strong, em.      */
 function runsToHtml(runs){
   return (runs || []).map(function(run){
     let t = esc(run.insert);
@@ -76,8 +75,7 @@ function runsToHtml(runs){
   }).join("");
 }
 
-function problemOpportunity(blocks){
-  let inside = false;
+function docHtml(blocks){
   const out = [];
   let list = null;
 
@@ -91,16 +89,13 @@ function problemOpportunity(blocks){
     const html = runsToHtml(c.deltaFormat).trim();
     const type = String(b.type || "");
 
-    if(TITLE_BLOCK.test(type)){
-      const plain = (c.deltaFormat || []).map(function(r){ return r.insert || ""; }).join("").trim();
-      if(!inside && SECTION.test(plain)){ inside = true; continue; }
-      if(inside){ break; }            /* the next heading ends the section */
+    if(TITLE_BLOCK.test(type)){            /* large, medium and small title */
+      closeList();
+      if(html) out.push("<h5>" + html + "</h5>");
       continue;
     }
-    if(!inside) continue;
-
-    if(type === "bulleted list" || type === "numbered list"){
-      const tag = type === "numbered list" ? "ol" : "ul";
+    if(LIST_BLOCK[type]){
+      const tag = LIST_BLOCK[type];
       if(!list || list.tag !== tag){ closeList(); list = { tag: tag, items: [] }; }
       if(html) list.items.push("<li>" + html + "</li>");
       continue;
@@ -110,6 +105,24 @@ function problemOpportunity(blocks){
   }
   closeList();
   return out.join("");
+}
+
+/* monday pages document blocks, 25 at a time by default, so a long document
+   has to be walked page by page or it arrives silently truncated. */
+async function docBlocks(objectId, token){
+  const PAGE = 100;
+  let all = [], page = 1;
+  for(;;){
+    const d = await gql(
+      "query($o:[ID!],$p:Int,$l:Int){ docs(object_ids:$o){ blocks(limit:$l, page:$p){ type content } } }",
+      { o: [objectId], p: page, l: PAGE }, token);
+    const doc = d && d.docs && d.docs[0];
+    const got = (doc && doc.blocks) || [];
+    all = all.concat(got);
+    if(got.length < PAGE || page >= 25) break;
+    page++;
+  }
+  return all;
 }
 
 function colValue(item, byId, title){
@@ -207,12 +220,9 @@ module.exports = async function handler(req, res){
        so the docs are fetched one at a time. */
     for(const job of docJobs){
       try {
-        const d = await gql("query($o:[ID!]){ docs(object_ids:$o){ blocks{ type content } } }",
-                            { o: [job.docId] }, token);
-        const doc = d && d.docs && d.docs[0];
-        const html = doc ? problemOpportunity(doc.blocks) : "";
+        const html = docHtml(await docBlocks(job.docId, token));
         if(html) job.entry.thesis = html;
-        else warnings.push('No "Problem / Opportunity" section found in the Thesis for "' + job.entry.name + '".');
+        else warnings.push('The Thesis document for "' + job.entry.name + '" is empty, so its thesis was left as it was.');
       } catch(e){
         warnings.push('Could not read the Thesis document for "' + job.entry.name + '": ' + e.message);
       }
