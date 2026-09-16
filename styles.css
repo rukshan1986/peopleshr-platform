@@ -403,6 +403,27 @@ button.slice:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   background:color-mix(in srgb,var(--pc) 13%,transparent)}
 .empty{font-size:12.5px;color:var(--ink3);padding:14px 4px;font-style:italic}
 
+/* public visibility, editor only */
+.intg{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:650;
+  letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:4px;
+  color:var(--ink3);background:color-mix(in srgb,var(--ink3) 13%,transparent);white-space:nowrap}
+.card.priv{border-style:dashed}
+.card.priv h3,.card.priv p{opacity:.72}
+.visrow{display:flex;align-items:center;gap:11px;margin-bottom:18px;padding:11px 13px;
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--bg)}
+.visrow.on{border-color:color-mix(in srgb,var(--now) 38%,transparent);
+  background:color-mix(in srgb,var(--now) 7%,transparent)}
+.vissw{flex:0 0 auto;width:38px;height:22px;border-radius:12px;border:1px solid var(--line2);
+  background:var(--panel);padding:0;cursor:pointer;position:relative;transition:background .14s,border-color .14s}
+.vissw .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;
+  background:var(--ink3);transition:transform .14s,background .14s}
+.visrow.on .vissw{background:var(--now);border-color:var(--now)}
+.visrow.on .vissw .knob{transform:translateX(16px);background:#fff}
+.vissw:focus-visible{outline:2px solid var(--now);outline-offset:2px}
+.vistx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.vistx strong{font-size:13px;font-weight:650;color:var(--ink)}
+.vistx span{font-size:11.5px;line-height:1.4;color:var(--ink3)}
+
 /* ── drawer ─────────────────────────────────────────────── */
 .scrim{position:fixed;inset:0;background:rgba(15,20,25,.42);backdrop-filter:blur(2px);
   opacity:0;pointer-events:none;transition:opacity .18s;z-index:40}
