@@ -90,7 +90,8 @@
         "captured": "2026-09-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854697896",
         "ado": "https://dev.azure.com/PeoplesHR/HRM/_queries/query/b6dc2ecc-7ee4-4ccf-ad43-a8d8471d4680/"
-      }
+      },
+      "pub": true
     },
     {
       "id": "5029507352-2854730893",
@@ -104,7 +105,8 @@
         "captured": "2026-09-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854730893",
         "ado": ""
-      }
+      },
+      "pub": true
     },
     {
       "id": "5029507352-2854734442",
@@ -118,7 +120,8 @@
         "captured": "2026-09-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854734442",
         "ado": ""
-      }
+      },
+      "pub": true
     },
     {
       "id": "5029507352-2854664562",
@@ -132,7 +135,8 @@
         "captured": "2026-09-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854664562",
         "ado": ""
-      }
+      },
+      "pub": true
     },
     {
       "id": "5029507352-2854866908",
@@ -146,7 +150,8 @@
         "captured": "2026-09-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854866908",
         "ado": ""
-      }
+      },
+      "pub": true
     },
     {
       "id": "5029507352-2854744086",
@@ -160,7 +165,8 @@
         "captured": "2026-09-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854744086",
         "ado": ""
-      }
+      },
+      "pub": true
     }
   ],
   "strategy": {
