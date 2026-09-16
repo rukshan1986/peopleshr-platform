@@ -279,6 +279,7 @@
           s: laneKeys.indexOf(m.lane) >= 0 ? m.lane : laneKeys[0],
           p: pkgKeys[0],
           pl: pilKeys[0],
+          pub: false,          /* internal until it is deliberately let out */
           detail: { captured:"", monday:"", ado:"", thesis:"" }
         };
         doc.items.push(cur);
