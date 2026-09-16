@@ -297,10 +297,12 @@
                 (sub ? '<span class="sub">'+esc(sub)+'</span>' : "")+
                 '</span><span class="n">'+list.length+'</span></div><div class="cards">';
         h += list.length ? list.map(function(i){
-          return '<button class="card" data-id="'+i.id+'" style="--c:'+R.packages[i.p]+
+          var priv = CAN_EDIT && !isPublic(i);
+          return '<button class="card'+(priv?" priv":"")+'" data-id="'+i.id+'" style="--c:'+R.packages[i.p]+
                  ';--pc:'+R.pillars[i.pl].c+'">'+
                  '<h3>'+esc(i.t)+'</h3><p>'+esc(i.d)+'</p>'+
                  '<span class="foot"><span class="pk"><i></i>'+esc(i.p)+'</span>'+
+                 (priv?'<span class="intg">'+ico(ICO.eyeoff,11)+'Internal</span>':"")+
                  '<span class="pl">'+esc(i.pl)+'</span></span></button>';
         }).join("") : '<div class="empty">Nothing matches.</div>';
         h += '</div>';
@@ -322,6 +324,7 @@
       board:  '<rect x="3.6" y="4.6" width="16.8" height="14.8" rx="2.6"/><path d="M9.2 4.6v14.8M14.8 4.6v14.8"/>',
       ticket: '<path d="M3.8 11.2l7.4-7.4h7.2a1.8 1.8 0 0 1 1.8 1.8v7.2l-7.4 7.4a1.6 1.6 0 0 1-2.3 0l-6.7-6.7a1.6 1.6 0 0 1 0-2.3z"/><circle cx="15.6" cy="8.4" r="1.5"/>',
       arrow:  '<path d="M7.5 16.5L16.5 7.5M9.5 7.5h7v7"/>',
+      eyeoff: '<path d="M10.6 6.2A7.8 7.8 0 0 1 12 6c5 0 9 6 9 6a15 15 0 0 1-2.4 2.9M6.3 7.4A15.6 15.6 0 0 0 3 12s4 6 9 6a8.6 8.6 0 0 0 3.6-.8"/><path d="M10.1 10.1a2.7 2.7 0 0 0 3.8 3.8"/><path d="M3.5 3.5l17 17"/>',
       tap:    '<path d="M9 11.4V6.3a1.8 1.8 0 0 1 3.6 0v7.3"/><path d="M12.6 12.1a1.7 1.7 0 0 1 3.4 0v.8"/><path d="M16 12.9a1.7 1.7 0 0 1 3.4 0v3a5.6 5.6 0 0 1-5.6 5.6h-1a5 5 0 0 1-3.6-1.5l-3.3-3.4a1.8 1.8 0 0 1 2.6-2.5L9 15z"/>'
     };
     function ico(pathStr, size){
@@ -329,6 +332,24 @@
              'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" '+
              'stroke-linejoin="round">'+pathStr+'</svg>';
     }
+    /* Public visibility. A capability is on the public roadmap only when it says
+       so, so anything new is internal until it is deliberately let out. The
+       public hostname never receives the others: they are stripped server-side
+       in api/roadmap.js, not merely hidden in the page. */
+    function isPublic(i){ return i && i.pub === true; }
+
+    function visRow(i){
+      if(!CAN_EDIT) return "";
+      var on = isPublic(i);
+      return '<div class="visrow'+(on?" on":"")+'">'+
+        '<button type="button" class="vissw" data-vis="'+esc(i.id)+'" role="switch" '+
+          'aria-checked="'+(on?"true":"false")+'" aria-label="Show on the public roadmap">'+
+          '<span class="knob"></span></button>'+
+        '<span class="vistx"><strong>'+(on?"On the public roadmap":"Internal only")+'</strong>'+
+        '<span>'+(on?"Anyone with the public link can see this."
+                   :"Never sent to the public link.")+'</span></span></div>';
+    }
+
     function mondayLabel(u){
       if(!u) return "";
       var m = /pulses\/(\d+)/.exec(u);
@@ -1021,6 +1042,8 @@
         return;
       }
 
+      h += visRow(i);
+
       h += f("Strategic pillar",
         '<div class="pilbox" style="--c:'+P.c+'"><span class="pic">'+glyph(P.ic)+'</span><div>'+
         '<div class="pnm">'+esc(i.pl)+'</div>'+
@@ -1051,6 +1074,12 @@
       var id = drawer.dataset.id; if(!id) return;
       ITEMEDIT = true; open(id);
     };
+    if(CAN_EDIT) $("dbody").addEventListener("click", function(e){
+      var v = e.target.closest("[data-vis]"); if(!v) return;
+      var it = byId[v.dataset.vis]; if(!it) return;
+      it.pub = !isPublic(it);
+      persist(); render(); open(it.id);
+    });
     scrim.onclick = close; $("close").onclick = close;
     document.addEventListener("keydown", function(e){
       if(e.key==="Escape"){ closeAll(null); syncAll(); close(); } });
