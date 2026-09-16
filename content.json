@@ -1,6 +1,6 @@
 {
   "title": "PeoplesHR Platform",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "packages": {
     "HR": "#3b6fd4",
     "Pay": "#c2701c",
@@ -91,7 +91,7 @@
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2854697896",
         "ado": "https://dev.azure.com/PeoplesHR/HRM/_queries/query/b6dc2ecc-7ee4-4ccf-ad43-a8d8471d4680/"
       },
-      "pub": true
+      "pub": false
     },
     {
       "id": "5029507352-2854730893",
