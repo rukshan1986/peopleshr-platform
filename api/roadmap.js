@@ -37,6 +37,10 @@ module.exports = async function handler(req, res){
   }
 
   delete doc.strategy;
+  /* Only capabilities explicitly marked public leave this endpoint. Anything
+     without the flag stays behind, so a new or forgotten item is never exposed
+     by accident. */
+  if(Array.isArray(doc.items)) doc.items = doc.items.filter(function(i){ return i && i.pub === true; });
   doc.roadmapOnly = true;
   res.status(200).json(doc);
 };
