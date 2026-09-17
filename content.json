@@ -1,6 +1,6 @@
 {
   "title": "PeoplesHR Platform",
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "packages": {
     "HR": "#3b6fd4",
     "Pay": "#c2701c",
@@ -233,13 +233,13 @@
         },
         "content": {
           "general": [
-            "<strong>Improve Time to Yes</strong><ul><li>The platform lacks a defined, tiered starter package, so first-time buyers have no low-friction way in.</li></ul>",
+            "<strong>Improve Time to Yes</strong><ul><li>The platform lacks a defined, tiered base package, so first-time buyers have no low-friction way in.</li></ul>",
             "<strong>Improve Time to Implement</strong><ul><li>Implementation time is currently a point of friction with timelines extending past 3 months, it should be closer to 1 month.</li></ul>"
           ],
           "byMarket": {
             "sl": [],
             "ph": [
-              "<strong>Time to Yes </strong>",
+              "<strong>Time to Yes</strong>",
               "Need to improve Payroll and Attendance compliance and localization.",
               "Need to align the Attendance module to enable multi shift capability to cater to market demands in new industries (Education, Hospitality, Construction etc).",
               "ELC is outdated, the platform needs a richer capability that meets current business needs.",
@@ -247,8 +247,7 @@
               "Performance does not support the DOLE disciplinary flow.",
               "Platform needs to upgrade the request tracker to be a true help desk.",
               "Health and Well-being module is a growing need in PH.",
-              "Improve Time to Implement",
-              "Improve Time to Implement"
+              "<strong>Improve Time to Implement</strong>"
             ],
             "id": [
               "<strong>Improve Time to Yes</strong><ul><li>Support for mobile based workflow authorizations is lacking.</li><li>Notifications and approvals via external messaging platforms are lacking.</li></ul>",
