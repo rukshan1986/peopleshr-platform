@@ -1,6 +1,6 @@
 {
   "title": "PeoplesHR Platform",
-  "updated": "2026-09-17",
+  "updated": "2026-09-18",
   "packages": {
     "HR": "#3b6fd4",
     "Pay": "#c2701c",
@@ -233,7 +233,7 @@
         },
         "content": {
           "general": [
-            "<strong>Improve Time to Yes</strong><ul><li>The platform lacks a defined, tiered base package, so first-time buyers have no low-friction way in.</li></ul>",
+            "<strong>Improve Time to Yes</strong><ul><li>The platform lacks a defined base package with structured tiering, so first-time buyers have no low-friction way in.</li></ul>",
             "<strong>Improve Time to Implement</strong><ul><li>Implementation time is currently a point of friction with timelines extending past 3 months, it should be closer to 1 month.</li></ul>"
           ],
           "byMarket": {
@@ -242,11 +242,10 @@
               "<strong>Time to Yes</strong>",
               "Need to improve Payroll and Attendance compliance and localization.",
               "Need to align the Attendance module to enable multi shift capability to cater to market demands in new industries (Education, Hospitality, Construction etc).",
-              "ELC is outdated, the platform needs a richer capability that meets current business needs.",
-              "Payroll does not support compensation planning.",
-              "Performance does not support the DOLE disciplinary flow.",
+              "ELC is outdated, the platform needs a richer capability that meets current business needs. Human force",
+              "Performance does not support the DOLE disciplinary flow. -Compup",
               "Platform needs to upgrade the request tracker to be a true help desk.",
-              "Health and Well-being module is a growing need in PH.",
+              "Health and Well-being module is a growing need in PH. - Fritsky",
               "<strong>Improve Time to Implement</strong>"
             ],
             "id": [
