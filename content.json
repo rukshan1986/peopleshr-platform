@@ -230,7 +230,7 @@
     },
     {
       "id": "5029507352-2834717719",
-      "t": "[GN] Decimal Precision for Contribution Rates in Pa…",
+      "t": "[GN] Decimal Precision for Contribution Rates in Pay Items - Enhancement",
       "d": "",
       "s": "now",
       "p": "Pay",
@@ -245,7 +245,7 @@
     },
     {
       "id": "5029507352-2858379160",
-      "t": "PH",
+      "t": "PH - Report Enhancement - 1601 C",
       "d": "",
       "s": "now",
       "p": "HR",
@@ -260,7 +260,7 @@
     },
     {
       "id": "5029507352-2860282231",
-      "t": "Search Bar (Lexi)",
+      "t": "Search Bar (Lexi) - Support Alternative Menu Name Keywords for navigation",
       "d": "",
       "s": "now",
       "p": "HR",
@@ -275,7 +275,7 @@
     },
     {
       "id": "5029507352-2860276812",
-      "t": "AI Insights",
+      "t": "AI Insights - Controlled Web Intelligence",
       "d": "",
       "s": "now",
       "p": "HR",
