@@ -206,8 +206,10 @@
      the public site until you press Publish.                              */
 
   function shortTitle(name){
-    var t = String(name || "").split(/\s+[–—-]\s+/)[0].trim();
-    return t.length > 52 ? t.slice(0, 51).trim() + "…" : t;
+    /* The board name in full. An earlier version cut it at the first dash,
+       which only suited items named "short name, dash, descriptor" and threw
+       away the substance of ones named "scope, dash, what it is". */
+    return String(name || "").replace(/\s+/g, " ").trim();
   }
   function firstSentence(s){
     var t = String(s || "").trim();
