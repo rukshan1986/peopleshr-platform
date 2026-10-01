@@ -1,6 +1,6 @@
 {
   "title": "PeoplesHR Platform",
-  "updated": "2026-09-18",
+  "updated": "2026-10-01",
   "packages": {
     "HR": "#3b6fd4",
     "Pay": "#c2701c",
@@ -242,10 +242,10 @@
               "<strong>Time to Yes</strong>",
               "Need to improve Payroll and Attendance compliance and localization.",
               "Need to align the Attendance module to enable multi shift capability to cater to market demands in new industries (Education, Hospitality, Construction etc).",
-              "ELC is outdated, the platform needs a richer capability that meets current business needs. Human force",
-              "Performance does not support the DOLE disciplinary flow. -Compup",
+              "ELC is outdated, the platform needs a richer capability that meets current business needs. Human force<ul><li>Promotion - Status and data update only<ul><li>need a more comprehensive and action driven, engaging</li></ul></li></ul>",
+              "Performance does not support the DOLE disciplinary flow.",
               "Platform needs to upgrade the request tracker to be a true help desk.",
-              "Health and Well-being module is a growing need in PH. - Fritsky",
+              "Health and Well-being module is a growing need in PH.",
               "<strong>Improve Time to Implement</strong>"
             ],
             "id": [
