@@ -54,6 +54,13 @@
     return btoa(bin);
   }
 
+  function b64decode(s){
+    var bin = atob(String(s == null ? "" : s).replace(/\s+/g, ""));
+    var bytes = new Uint8Array(bin.length);
+    for(var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+
   function render(){
     var d = dirty(), ok = ready();
     bar.hidden = false;
@@ -176,8 +183,18 @@
     var base = "/repos/" + cfg.owner + "/" + cfg.repo + "/contents/" + cfg.path;
 
     api("GET", base + "?ref=" + encodeURIComponent(cfg.branch))
-      .then(function(cur){ return cur.sha; }, function(){ return null; })
-      .then(function(sha){
+      .then(function(cur){ return cur; }, function(){ return null; })
+      .then(function(cur){
+        /* If the live file has moved on since this page loaded, publishing
+           would quietly undo whatever changed it. Refuse and say so. */
+        if(cur && cur.content && window.PHR_PUBLISHED){
+          var live = null;
+          try { live = JSON.parse(b64decode(cur.content)); } catch(e){}
+          if(live && stable(live) !== stable(window.PHR_PUBLISHED))
+            throw new Error("The published content changed after this page was opened. "+
+              "Reload before publishing, or this draft will undo that change.");
+        }
+        var sha = cur ? cur.sha : null;
         var payload = {
           message: "Publish platform content " + doc.updated,
           content: b64(text),
@@ -314,6 +331,7 @@
         if(pkgKeys.indexOf(m.pkg) < 0) notes.push('"' + cur.t + '" has package "' + m.pkg + '", which is not one of this site’s packages, so it was left alone.');
         else set(cur, "p", m.pkg, "package");
       }
+      own(cur, "t", shortTitle(m.name), "title");   /* the board owns the wording */
       set(cur.detail, "captured", m.captured, "captured date");
       set(cur.detail, "monday", m.monday, "monday link");
       if(payload.columns && payload.columns.ado) own(cur.detail, "ado", m.ado, "Azure DevOps link");
