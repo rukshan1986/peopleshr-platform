@@ -80,7 +80,7 @@
   "items": [
     {
       "id": "5029507352-2854697896",
-      "t": "Employee Help Desk",
+      "t": "Employee Help Desk – HR Request & Service Management",
       "d": "One place to raise an HR request, with routing, SLAs and a visible trail.",
       "s": "now",
       "p": "Engagement",
@@ -95,7 +95,7 @@
     },
     {
       "id": "5029507352-2854730893",
-      "t": "Workflow Actions via Messaging",
+      "t": "Workflow - Workflow Notifications & Actions through Messaging Platforms",
       "d": "Approve and act on workflow tasks from WhatsApp, without entering PHR.",
       "s": "now",
       "p": "Utilities",
@@ -110,7 +110,7 @@
     },
     {
       "id": "5029507352-2854734442",
-      "t": "AI Insights via Messaging",
+      "t": "AI Insights - Via Messaging Platforms",
       "d": "Ask workforce questions from Teams, WhatsApp or Google Chat.",
       "s": "now",
       "p": "Insights",
@@ -125,7 +125,7 @@
     },
     {
       "id": "5029507352-2854664562",
-      "t": "PHR Agentic Twin",
+      "t": "PHR AI Harness – One Intelligent Interface for the Entire PHR Platform",
       "d": "One conversational interface across the whole platform, not another module.",
       "s": "now",
       "p": "Utilities",
@@ -140,7 +140,7 @@
     },
     {
       "id": "5029507352-2854866908",
-      "t": "Asynchronous Report Generation",
+      "t": "RN - Asynchronous Report Generation in Report Navigator",
       "d": "Heavy reports process in the background while light ones stay instant.",
       "s": "now",
       "p": "Insights",
@@ -155,7 +155,7 @@
     },
     {
       "id": "5029507352-2854744086",
-      "t": "Lexi Chatbot via Messaging",
+      "t": "Lexi Chatbot via Messaging Platforms",
       "d": "Employee self service through the chat apps people already use.",
       "s": "next",
       "p": "Engagement",
@@ -230,7 +230,7 @@
     },
     {
       "id": "5029507352-2834717719",
-      "t": "[GN] Decimal Precision for Contribution Rates in Pa…",
+      "t": "[GN] Decimal Precision for Contribution Rates in Pay Items - Enhancement",
       "d": "",
       "s": "now",
       "p": "Pay",
@@ -245,7 +245,7 @@
     },
     {
       "id": "5029507352-2858379160",
-      "t": "PH",
+      "t": "PH - Report Enhancement - 1601 C",
       "d": "",
       "s": "now",
       "p": "HR",
@@ -260,7 +260,7 @@
     },
     {
       "id": "5029507352-2860282231",
-      "t": "Search Bar (Lexi)",
+      "t": "Search Bar (Lexi) - Support Alternative Menu Name Keywords for navigation",
       "d": "",
       "s": "now",
       "p": "HR",
@@ -275,7 +275,7 @@
     },
     {
       "id": "5029507352-2860276812",
-      "t": "AI Insights",
+      "t": "AI Insights - Controlled Web Intelligence",
       "d": "",
       "s": "now",
       "p": "HR",
