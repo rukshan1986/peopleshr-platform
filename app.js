@@ -291,6 +291,9 @@
         var lane = document.createElement("section"); lane.className = "lane";
         lane.style.setProperty("--lc","var("+L.c+")");
         lane.style.setProperty("--lbg","var("+L.bg+")");
+        /* Width follows load, so the lane holding everything gets the room and
+           wraps into several card columns rather than one long thread. */
+        lane.style.setProperty("--g", Math.max(1, list.length));
         var sub = (R.lanes && R.lanes[L.k]) || "";
         var h = '<div class="lanehead"><span class="mark"></span><span class="txt">'+
                 '<h2>'+L.label+'</h2>'+
