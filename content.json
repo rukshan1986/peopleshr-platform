@@ -505,7 +505,7 @@
       "s": "next",
       "p": "HR",
       "pl": "Delight",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-09-15",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2860281151",
@@ -520,7 +520,7 @@
       "s": "next",
       "p": "HR",
       "pl": "Delight",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-09-17",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2861521521",
@@ -535,7 +535,7 @@
       "s": "next",
       "p": "HR",
       "pl": "Delight",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-09-17",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2861548349",
@@ -550,7 +550,7 @@
       "s": "next",
       "p": "HR",
       "pl": "Delight",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-09-17",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2861527079",
