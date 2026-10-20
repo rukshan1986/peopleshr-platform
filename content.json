@@ -295,7 +295,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Delight",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-09-16",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2860292668",
@@ -310,7 +310,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883926316",
@@ -325,7 +325,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883958662",
@@ -340,7 +340,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883926818",
@@ -355,7 +355,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883764742",
@@ -370,7 +370,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883764770",
@@ -385,7 +385,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883966132",
@@ -400,7 +400,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2884001921",
@@ -415,7 +415,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Defend",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-19",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2883949121",
@@ -430,7 +430,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Land",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2876430856",
@@ -445,7 +445,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Land",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2876403027",
@@ -460,7 +460,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Land",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-08",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2876616812",
@@ -475,7 +475,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Land",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-09-18",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2862485535",
@@ -490,7 +490,7 @@
       "s": "now",
       "p": "HR",
       "pl": "Land",
-      "pub": false,
+      "pub": true,
       "detail": {
         "captured": "2026-10-02",
         "monday": "https://peopleshr-squad.monday.com/boards/5029507352/pulses/2872338380",
